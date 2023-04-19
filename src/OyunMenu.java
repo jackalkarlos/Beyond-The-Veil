@@ -2,7 +2,7 @@ import java.io.File;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.geometry.Pos; //
+import javafx.geometry.Pos; ///
 import javafx.geometry.Insets;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
