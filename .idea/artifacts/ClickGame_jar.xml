@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ClickGame:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ClickGame_jar</output-path>
+    <root id="archive" name="ClickGame.jar">
+      <element id="module-output" name="ClickGame" />
+      <element id="extracted-dir" path="$USER_HOME$/OneDrive/Masaüstü/javafx-sdk-20/lib/javafx-swt.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/OneDrive/Masaüstü/javafx-sdk-20/lib/javafx.web.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/OneDrive/Masaüstü/javafx-sdk-20/lib/javafx.base.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/OneDrive/Masaüstü/javafx-sdk-20/lib/javafx.fxml.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/OneDrive/Masaüstü/javafx-sdk-20/lib/javafx.media.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/OneDrive/Masaüstü/javafx-sdk-20/lib/javafx.swing.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/OneDrive/Masaüstü/javafx-sdk-20/lib/javafx.controls.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/OneDrive/Masaüstü/javafx-sdk-20/lib/javafx.graphics.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
