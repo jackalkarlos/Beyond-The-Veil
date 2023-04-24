@@ -1,11 +1,5 @@
-import java.io.*;
-import java.util.*;
 import javafx.application.Application;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -17,9 +11,7 @@ public class Game extends Application {
         launch(args);
     }
 
-    private static final String FILE_PATH = "settings.conf"; // -> settings.conf production asamasinda out/production/ClickGame icerisinde, oyunun ismi degisicek :D
-//bos ekran haci
-    @Override
+    private static final String FILE_PATH = "settings.conf"; // -> settings.conf production asamasinda out/production/ClickGame icerisinde, oyunun ismi degisicek :D@Override
     public void start(Stage primaryStage) {
         System.out.println("Working Directory = " + System.getProperty("user.dir"));
         // Menü metni

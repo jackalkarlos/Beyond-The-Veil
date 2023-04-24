@@ -1,23 +1,17 @@
-import java.io.File;
-
-import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.geometry.Pos;
-import javafx.geometry.Insets;
+import java.io.File; // dosyalarin giris cikis islemlerini yapmak icin - input output
+import javafx.application.Application; //bu kutuphane ve ustteki kutuphane program icin platform olusturmamiza yariyor, motor gibi dusunebiliriz
+import javafx.geometry.Pos; //nesnelerin cozunurlugu ve konumu icin kullaniliyor
+import javafx.geometry.Insets; //padding icin kullaniliyor
 import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.VBox;
 import javafx.scene.image.Image;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
