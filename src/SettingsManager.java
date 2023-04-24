@@ -32,12 +32,15 @@ public class SettingsManager extends Application{
             Properties properties = new Properties();
             FileInputStream fileInputStream = new FileInputStream(FILE_PATH);
             properties.load(fileInputStream);
-            properties.getProperty("audio");
-            properties.getProperty("opacity");
-            properties.getProperty("resolution");
-            properties.getProperty("full-screen");
-            properties.getProperty("level");
+            String audio = properties.getProperty("audio");
+            String opacity = properties.getProperty("opacity");
+            String resolution = properties.getProperty("resolution");
+            String fullScreen = properties.getProperty("full-screen");
+            String level = properties.getProperty("level");
             fileInputStream.close();
+            if (audio == null || audio == "null" || opacity == null || opacity == "null" || resolution == null || resolution == "null" || fullScreen == null || fullScreen == "null" || level == null|| level == "null") {
+                throw new IOException("abooo");
+            }
         } catch (IOException e) {
             try {
                 Properties properties = new Properties();
@@ -47,6 +50,7 @@ public class SettingsManager extends Application{
                 properties.setProperty("level", "1");
                 properties.setProperty("full-screen", "True");
                 FileOutputStream fileOutputStream = new FileOutputStream(FILE_PATH);
+                properties.store(fileOutputStream, "Settings");
                 fileOutputStream.close();
             } catch (IOException ex) {
                 System.err.println("Hata: " + ex.getMessage());
@@ -114,8 +118,7 @@ public class SettingsManager extends Application{
         int audioValue = returnAudioValue();
         int opacityValue = returnOpacityValue();
         String resValue = returnResValue();
-        String ScreenValue = returnScreenValue();
-
+        String screenValue = returnScreenValue();
 
 
         Text audioText = new Text();
@@ -172,14 +175,15 @@ public class SettingsManager extends Application{
         ComboBox combo_box =
                 new ComboBox(FXCollections
                         .observableArrayList(week_days));
-
+        boolean screenBoolean=Boolean.parseBoolean(screenValue);
 
         CheckBox cb1 = new CheckBox();
 //A checkbox with a string caption
         cb1.setText("Tam Ekran");
-        cb1.setSelected(true);
+        cb1.setSelected(screenBoolean);
         //boolean isSelected = checkBox1.isSelected();
         cb1.setFont(Font.font("Arial", 17));
+
 
 
 
