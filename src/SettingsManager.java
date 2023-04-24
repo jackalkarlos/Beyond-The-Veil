@@ -216,6 +216,13 @@ public class SettingsManager extends Application{
         kaydet.setFont(Font.font("Arial", FontWeight.BOLD, 15));
         Button menuyedon = new Button("Menüye Dön");
         menuyedon.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+        menuyedon.setOnAction(event -> {
+            Stage oyunMenuStage = new Stage();
+            OyunMenu oyunMenuApp = new OyunMenu();
+            oyunMenuApp.start(oyunMenuStage);
+            primaryStage.close();
+        });
+
 
         Image anime = new Image("images/setimage.png");
         ImageView animeView = new ImageView(anime);
