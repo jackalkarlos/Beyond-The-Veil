@@ -14,6 +14,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.scene.text.*;
 import javafx.scene.control.ComboBox;
@@ -119,8 +120,14 @@ public class SettingsManager extends Application{
         int opacityValue = returnOpacityValue();
         String resValue = returnResValue();
         String screenValue = returnScreenValue();
-
-
+        int listindex = -1; // Başlangıç değeri atanması
+        if (resValue.equals("800x600")) {
+            listindex=0;
+        } else if (resValue.equals("1280x720")) {
+            listindex=1;
+        } else if (resValue.equals("1920x1080")) {
+            listindex=2;
+        }
         Text audioText = new Text();
         audioText.setFont(new Font(20));
         audioText.setTextAlignment(TextAlignment.CENTER);
@@ -176,6 +183,8 @@ public class SettingsManager extends Application{
                 new ComboBox(FXCollections
                         .observableArrayList(week_days));
         boolean screenBoolean=Boolean.parseBoolean(screenValue);
+        combo_box.getSelectionModel().select(listindex);
+
 
         CheckBox cb1 = new CheckBox();
 //A checkbox with a string caption
@@ -183,6 +192,7 @@ public class SettingsManager extends Application{
         cb1.setSelected(screenBoolean);
         //boolean isSelected = checkBox1.isSelected();
         cb1.setFont(Font.font("Arial", 17));
+
 
 
 
@@ -225,15 +235,4 @@ public class SettingsManager extends Application{
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-    /*
-            properties.setProperty("audio", String.valueOf(audio));
-            properties.setProperty("opacity", String.valueOf(opacity));
-            properties.setProperty("resolution", resolution);
-
-            FileOutputStream fileOutputStream = new FileOutputStream(FILE_PATH);
-            properties.store(fileOutputStream, null);
-            fileOutputStream.close();
-
-     */
-
 }
