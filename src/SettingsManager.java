@@ -31,6 +31,11 @@ public class SettingsManager extends Application{
             Properties properties = new Properties();
             FileInputStream fileInputStream = new FileInputStream(FILE_PATH);
             properties.load(fileInputStream);
+            properties.getProperty("audio");
+            properties.getProperty("opacity");
+            properties.getProperty("resolution");
+            properties.getProperty("full-screen");
+            properties.getProperty("level");
             fileInputStream.close();
         } catch (IOException e) {
             try {
@@ -39,8 +44,8 @@ public class SettingsManager extends Application{
                 properties.setProperty("opacity", "50");
                 properties.setProperty("resolution", "800x600");
                 properties.setProperty("level", "1");
+                properties.setProperty("full-screen", "True");
                 FileOutputStream fileOutputStream = new FileOutputStream(FILE_PATH);
-                properties.store(fileOutputStream, "Varsayılan Ayarlar");
                 fileOutputStream.close();
             } catch (IOException ex) {
                 System.err.println("Hata: " + ex.getMessage());
