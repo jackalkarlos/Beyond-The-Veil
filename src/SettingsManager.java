@@ -214,6 +214,8 @@ public class SettingsManager extends Application{
         backgroundImageView.setOpacity(0.5);
         Button kaydet = new Button("Kaydet");
         kaydet.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+        kaydet.setOnAction(event -> {
+        });
         Button menuyedon = new Button("Menüye Dön");
         menuyedon.setFont(Font.font("Arial", FontWeight.BOLD, 15));
         menuyedon.setOnAction(event -> {
