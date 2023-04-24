@@ -139,7 +139,6 @@ public class SettingsManager extends Application{
         slider.setMinorTickCount(0);
         slider.setShowTickLabels(true);
         slider.setSnapToTicks(true);
-
         //System.out.println(slider.getValue());
         slider.valueProperty().addListener(
                 new ChangeListener<Number>() {
@@ -178,7 +177,6 @@ public class SettingsManager extends Application{
         String week_days[] =
                 {"800x600", "1280x720", "1920x1080"};
 
-        // Create a combo box
         ComboBox combo_box =
                 new ComboBox(FXCollections
                         .observableArrayList(week_days));
@@ -187,15 +185,9 @@ public class SettingsManager extends Application{
 
 
         CheckBox cb1 = new CheckBox();
-//A checkbox with a string caption
         cb1.setText("Tam Ekran");
         cb1.setSelected(screenBoolean);
-        //boolean isSelected = checkBox1.isSelected();
         cb1.setFont(Font.font("Arial", 17));
-
-
-
-
 
         Image backgroundImage = new Image("images/settingswp.jpg");
         ImageView backgroundImageView = new ImageView(backgroundImage);
@@ -215,6 +207,25 @@ public class SettingsManager extends Application{
         Button kaydet = new Button("Kaydet");
         kaydet.setFont(Font.font("Arial", FontWeight.BOLD, 15));
         kaydet.setOnAction(event -> {
+            //boolean isSelected = cb1.isSelected(); //fullscreen ayarı
+            //String message = combo_box.getValue(); // niye calismadigini bilmedigim resolution ayari
+            //newValue (audio ayari)
+            //slider2newValue (opacity ayari)
+            try {
+                Properties properties = new Properties();
+                properties.setProperty("audio", "50");
+                properties.setProperty("opacity", "50");
+                properties.setProperty("resolution", "1920x1080");
+                properties.setProperty("level", "1");
+                properties.setProperty("full-screen", "True");
+                FileOutputStream fileOutputStream = new FileOutputStream(FILE_PATH);
+                properties.store(fileOutputStream, "Settings");
+                fileOutputStream.close();
+            } catch (IOException ex) {
+                System.err.println("Hata: " + ex.getMessage());
+            }
+        //leveli degistirmeden bir kaydetme fonksiyonuna ihtiyacimiz var
+
         });
         Button menuyedon = new Button("Menüye Dön");
         menuyedon.setFont(Font.font("Arial", FontWeight.BOLD, 15));
