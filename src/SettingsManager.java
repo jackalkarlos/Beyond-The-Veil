@@ -20,10 +20,6 @@ import javafx.collections.FXCollections;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Button;
 
-
-
-
-
 public class SettingsManager extends Application{
     public static void main(String[] args) {
         checkifSettings();
@@ -66,10 +62,27 @@ public class SettingsManager extends Application{
         return audioVal;
 
     }
+    public static int returnOpacityValue() {
+        int opacityVal=0;
+        try {
+            Properties properties = new Properties();
+            FileInputStream fileInputStream = new FileInputStream(FILE_PATH);
+            properties.load(fileInputStream);
+            fileInputStream.close();
+            String audioString = properties.getProperty("opacity"); // "opacity" isimli özelliğin değerini oku
+            opacityVal = Integer.parseInt(audioString);
+        } catch (IOException | NumberFormatException e) {
+            System.err.println("Hata: " + e.getMessage());
+        }
+        return opacityVal;
+
+    }
 
     @Override
     public void start(Stage primaryStage) {
         int audioValue = returnAudioValue();
+        int opacityValue = returnOpacityValue();
+
 
         Text audioText = new Text();
         audioText.setFont(new Font(20));
@@ -97,7 +110,7 @@ public class SettingsManager extends Application{
         opacityText.setTextAlignment(TextAlignment.CENTER);
         opacityText.setText("Parlaklık");
 
-        Slider slider2 = new Slider(0, 100, 0);
+        Slider slider2 = new Slider(0, 100, opacityValue);
         slider2.setBlockIncrement(10);
         slider2.setMajorTickUnit(10);
         slider2.setMinorTickCount(0);
@@ -158,8 +171,8 @@ public class SettingsManager extends Application{
 
         Image anime = new Image("images/setimage.png");
         ImageView animeView = new ImageView(anime);
-        animeView.setFitHeight(200);
-        animeView.setFitWidth(280);
+        animeView.setFitHeight(215);
+        animeView.setFitWidth(245);
 
 
         stackPane.getChildren().addAll(backgroundImageView, vbox1, cb1,animeView,kaydet,menuyedon);
