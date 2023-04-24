@@ -95,18 +95,33 @@ public class SettingsManager extends Application{
         }
         return ResVal;
     }
+    public static String returnScreenValue() {
+        String ScreenVal = "False";
+        try {
+            Properties properties = new Properties();
+            FileInputStream fileInputStream = new FileInputStream(FILE_PATH);
+            properties.load(fileInputStream);
+            fileInputStream.close();
+            ScreenVal = properties.getProperty("full-screen");
+        } catch (IOException e) {
+            System.err.println("Hata: " + e.getMessage());
+        }
+        return ScreenVal;
+    }
 
     @Override
     public void start(Stage primaryStage) {
         int audioValue = returnAudioValue();
         int opacityValue = returnOpacityValue();
         String resValue = returnResValue();
+        String ScreenValue = returnScreenValue();
+
 
 
         Text audioText = new Text();
         audioText.setFont(new Font(20));
         audioText.setTextAlignment(TextAlignment.CENTER);
-        audioText.setText("Game Volume");
+        audioText.setText("Ses Ayarı");
 
         Slider slider = new Slider(0, 100, audioValue);
         slider.setBlockIncrement(10);
