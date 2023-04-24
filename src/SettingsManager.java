@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.*;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
@@ -42,7 +43,7 @@ public class SettingsManager extends Application{
                 Properties properties = new Properties();
                 properties.setProperty("audio", "50");
                 properties.setProperty("opacity", "50");
-                properties.setProperty("resolution", "800x600");
+                properties.setProperty("resolution", "1920x1080");
                 properties.setProperty("level", "1");
                 properties.setProperty("full-screen", "True");
                 FileOutputStream fileOutputStream = new FileOutputStream(FILE_PATH);
@@ -80,13 +81,26 @@ public class SettingsManager extends Application{
             System.err.println("Hata: " + e.getMessage());
         }
         return opacityVal;
-
+    }
+    public static String returnResValue() {
+        String ResVal = "0";
+        try {
+            Properties properties = new Properties();
+            FileInputStream fileInputStream = new FileInputStream(FILE_PATH);
+            properties.load(fileInputStream);
+            fileInputStream.close();
+            ResVal = properties.getProperty("resolution");
+        } catch (IOException e) {
+            System.err.println("Hata: " + e.getMessage());
+        }
+        return ResVal;
     }
 
     @Override
     public void start(Stage primaryStage) {
         int audioValue = returnAudioValue();
         int opacityValue = returnOpacityValue();
+        String resValue = returnResValue();
 
 
         Text audioText = new Text();
@@ -101,7 +115,7 @@ public class SettingsManager extends Application{
         slider.setShowTickLabels(true);
         slider.setSnapToTicks(true);
 
-        System.out.println(slider.getValue());
+        //System.out.println(slider.getValue());
         slider.valueProperty().addListener(
                 new ChangeListener<Number>() {
                     public void changed(ObservableValue <? extends Number >
@@ -122,7 +136,7 @@ public class SettingsManager extends Application{
         slider2.setShowTickLabels(true);
         slider2.setSnapToTicks(true);
 
-        System.out.println(slider2.getValue());
+        //System.out.println(slider2.getValue());
         slider2.valueProperty().addListener(
                 new ChangeListener<Number>() {
                     public void changed(ObservableValue <? extends Number >
