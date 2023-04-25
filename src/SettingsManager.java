@@ -100,6 +100,19 @@ public class SettingsManager extends Application{
         }
         return ResVal;
     }
+    public static String returnlevelValue() {
+        String strLevel = "0";
+        try {
+            Properties properties = new Properties();
+            FileInputStream fileInputStream = new FileInputStream(FILE_PATH);
+            properties.load(fileInputStream);
+            fileInputStream.close();
+            strLevel = properties.getProperty("level");
+        } catch (IOException e) {
+            System.err.println("Hata: " + e.getMessage());
+        }
+        return strLevel;
+    }
     public static String returnScreenValue() {
         String ScreenVal = "False";
         try {
@@ -120,6 +133,8 @@ public class SettingsManager extends Application{
         int opacityValue = returnOpacityValue();
         String resValue = returnResValue();
         String screenValue = returnScreenValue();
+        //String levelValue = returnlevelValue();
+
         int listindex = -1; // Başlangıç değeri atanması
         if (resValue.equals("800x600")) {
             listindex=0;
@@ -139,7 +154,6 @@ public class SettingsManager extends Application{
         slider.setMinorTickCount(0);
         slider.setShowTickLabels(true);
         slider.setSnapToTicks(true);
-        //System.out.println(slider.getValue());
         slider.valueProperty().addListener(
                 new ChangeListener<Number>() {
                     public void changed(ObservableValue <? extends Number >
@@ -207,25 +221,39 @@ public class SettingsManager extends Application{
         Button kaydet = new Button("Kaydet");
         kaydet.setFont(Font.font("Arial", FontWeight.BOLD, 15));
         kaydet.setOnAction(event -> {
-            //boolean isSelected = cb1.isSelected(); //fullscreen ayarı
-            //String message = combo_box.getValue(); // niye calismadigini bilmedigim resolution ayari
-            //newValue (audio ayari)
-            //slider2newValue (opacity ayari)
+            double sliderDeger = slider.getValue(); //  Audio
+            int sliderDeger2 = (int) sliderDeger;
+            String sesDegeri = Integer.toString(sliderDeger2);
+
+            double slider2Deger = slider2.getValue(); //  Opacity
+            int slider2Deger2 = (int) slider2Deger;
+            String opacityDegeri = Integer.toString(slider2Deger2);
+
+            String levelValue = returnlevelValue(); // Level - Burayi Kullanici Degistiremez
+
+            boolean isSelected = cb1.isSelected(); // full screen
+            String fullScreenValue;
+            if (isSelected) {
+                fullScreenValue = "True";
+            } else {
+                fullScreenValue = "False";
+            }
+            Object res1 = combo_box.getValue();
+            String resolution = res1.toString();
+
             try {
                 Properties properties = new Properties();
-                properties.setProperty("audio", "50");
-                properties.setProperty("opacity", "50");
-                properties.setProperty("resolution", "1920x1080");
-                properties.setProperty("level", "1");
-                properties.setProperty("full-screen", "True");
+                properties.setProperty("audio", sesDegeri);
+                properties.setProperty("opacity", opacityDegeri);
+                properties.setProperty("resolution", resolution);
+                properties.setProperty("level", levelValue);
+                properties.setProperty("full-screen", fullScreenValue);
                 FileOutputStream fileOutputStream = new FileOutputStream(FILE_PATH);
                 properties.store(fileOutputStream, "Settings");
                 fileOutputStream.close();
             } catch (IOException ex) {
                 System.err.println("Hata: " + ex.getMessage());
             }
-        //leveli degistirmeden bir kaydetme fonksiyonuna ihtiyacimiz var
-
         });
         Button menuyedon = new Button("Menüye Dön");
         menuyedon.setFont(Font.font("Arial", FontWeight.BOLD, 15));
