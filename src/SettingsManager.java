@@ -1,6 +1,5 @@
 import java.io.*;
 import java.util.*;
-
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
@@ -14,7 +13,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.scene.text.*;
 import javafx.scene.control.ComboBox;
@@ -133,8 +131,6 @@ public class SettingsManager extends Application{
         int opacityValue = returnOpacityValue();
         String resValue = returnResValue();
         String screenValue = returnScreenValue();
-        //String levelValue = returnlevelValue();
-
         int listindex = -1; // Başlangıç değeri atanması
         if (resValue.equals("800x600")) {
             listindex=0;
@@ -160,7 +156,7 @@ public class SettingsManager extends Application{
                                                 observable, Number oldValue, Number newValue)
                     {
                     }
-                });
+                }); // burayi internetten arakladim, degisen slider degerini mantikli bir kodla almanin bir yolu yoktu
 
         Text opacityText = new Text();
         opacityText.setFont(new Font(20));
