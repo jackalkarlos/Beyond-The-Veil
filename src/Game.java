@@ -4,6 +4,12 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import java.util.ArrayList;
+import java.util.List;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
 
 public class Game extends Application {
     public static void main(String[] args) {
@@ -27,6 +33,9 @@ public class Game extends Application {
         primaryStage.setScene(scene); // sahne olusturma
         primaryStage.show();
     }
+    //public static List getSettings() {
+    //}
+
 
 
 }
