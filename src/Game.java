@@ -14,24 +14,34 @@ public class Game extends Application {
     public static void main(String[] args) {
         SettingsManager settingsManager = new SettingsManager();
         settingsManager.checkifSettings(); //once ayarlarin olup olmadigi kontrol edilecek
-        //readSettings(); sonrasinda oyun baslamadan once ayarlari okumaya ihtiyac duyacak,
         launch(args); // oyunu baslat,
     }
 
     private static final String FILE_PATH = "settings.conf"; // -> settings.conf production asamasinda out/production/ClickGame icerisinde, oyunun ismi degisicek :D@Override
     public void start(Stage primaryStage) {
-        System.out.println("Working Directory = " + System.getProperty("user.dir"));
-        // Menü metni
-        Text txtMenu = new Text("Game");
-        txtMenu.setFont(Font.font(36));
+        SettingsManager settingsMng = new SettingsManager();
+        int intAudio = settingsMng.returnAudioValue();
+
+        String strLevel = settingsMng.returnlevelValue();
+
+        int intOpacity = settingsMng.returnOpacityValue();
+        double opacity=intOpacity / 100;
+
+        String strRes= settingsMng.returnResValue();
+        String[] parts = strRes.split("x");
+        int width = Integer.parseInt(parts[0]);
+        int height = Integer.parseInt(parts[1]);
+
+        String fullScreen= settingsMng.returnScreenValue();
+        boolean isFullScreen=Boolean.parseBoolean(fullScreen);
+
         StackPane stackPane = new StackPane();
 
-        // Scene ve Stage ayarları
-        Scene scene = new Scene(stackPane, 800, 600); //resolution
-        primaryStage.setTitle("Oyun"); // oyun pencere ismi
-        primaryStage.setScene(scene); // sahne olusturma
+        Scene scene = new Scene(stackPane, width, height);
+        primaryStage.setTitle("Beyond The Veil");
+        primaryStage.setScene(scene);
+        primaryStage.setOpacity(opacity);
+        primaryStage.setFullScreen(isFullScreen);
         primaryStage.show();
     }
-    //public static List getSettings() { -> burasi ayar okuma kismi olacak oyun baslamadan once ilk bunu okumali
-    //}
 }
