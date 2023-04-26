@@ -25,7 +25,9 @@ public class Game extends Application {
         String strLevel = settingsMng.returnlevelValue();
 
         int intOpacity = settingsMng.returnOpacityValue();
-        double opacity=intOpacity / 100;
+        double fakeOpacity=intOpacity / 10;
+        double opacity=fakeOpacity / 10;
+
 
         String strRes= settingsMng.returnResValue();
         String[] parts = strRes.split("x");
@@ -40,7 +42,7 @@ public class Game extends Application {
         Scene scene = new Scene(stackPane, width, height);
         primaryStage.setTitle("Beyond The Veil");
         primaryStage.setScene(scene);
-        primaryStage.setOpacity(opacity);
+        primaryStage.setOpacity(fakeOpacity);
         primaryStage.setFullScreen(isFullScreen);
         primaryStage.show();
     }

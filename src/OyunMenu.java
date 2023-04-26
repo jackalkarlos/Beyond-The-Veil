@@ -20,12 +20,29 @@ public class OyunMenu extends Application {
 
     public static void main(String[] args) {
         launch(args); //javafx'de application sınıfının baslatilmasini launch metodu saglar
+        SettingsManager settingsManager = new SettingsManager();
+        settingsManager.checkifSettings(); //once ayarlarin olup olmadigi kontrol edilecek
 
     }
     @Override
     public void start(Stage primaryStage) {
-        // Working Directory Tanimlamasi - Burasi silinecek calisma sirasinda takip edebilmek icin yapildi
-        //System.out.println("Working Directory = " + System.getProperty("user.dir"));
+        SettingsManager settingsMng = new SettingsManager();
+        int intAudio = settingsMng.returnAudioValue();
+        double fakeAudioLevel=intAudio/10;
+        double audioLevel=fakeAudioLevel/10;
+
+        int intOpacity = settingsMng.returnOpacityValue();
+        double fakeOpacity=intOpacity / 10;
+        double opacity=fakeOpacity / 10;
+
+
+        String strRes= settingsMng.returnResValue();
+        String[] parts = strRes.split("x");
+        int width = Integer.parseInt(parts[0]);
+        int height = Integer.parseInt(parts[1]);
+
+        String fullScreen= settingsMng.returnScreenValue();
+        boolean isFullScreen=Boolean.parseBoolean(fullScreen);
 
         Image backgroundImage = new Image("images/Background.png");
         ImageView backgroundImageView = new ImageView(backgroundImage);
@@ -42,8 +59,7 @@ public class OyunMenu extends Application {
         mediaPlayer = new MediaPlayer(media);
         mediaPlayer.play();
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
-        //double volume = 0.5; //  ses seviyesi (0.0 - 1.0 arasında bir değer)
-        //mediaPlayer.setVolume(volume);
+        mediaPlayer.setVolume(audioLevel);
 
 
         //Game.Java class'indaki gui'yi çağıran buton
@@ -117,14 +133,15 @@ public class OyunMenu extends Application {
         //StackPane.setAlignment(btnAyarlar, Pos.BOTTOM_RIGHT);
 
         // Scene ve Stage ayarları -> resolution icin update gececegiz unutturmayin settings confta width height olarak ayrilmasi lazim
-        Scene scene = new Scene(stackPane, 1920, 1080);
+        Scene scene = new Scene(stackPane, width, height);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Oyun Menüsü");
         backgroundImageView.fitWidthProperty().bind(scene.widthProperty());
         backgroundImageView.fitHeightProperty().bind(scene.heightProperty());
         AppLogoView.fitWidthProperty().bind(scene.widthProperty());
         AppLogoView.fitHeightProperty().bind(scene.heightProperty());
-        primaryStage.setFullScreen(true);
+        primaryStage.setFullScreen(isFullScreen);
+        primaryStage.setOpacity(opacity);
         primaryStage.show();
     }
 }
