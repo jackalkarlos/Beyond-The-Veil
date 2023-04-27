@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 public class OyunMenu extends Application {
     private MediaPlayer mediaPlayer;
 //
-    public static void main(String[] args) { //bu oyuun teması oha bne bunu commit atmadım mı
+    public static void main(String[] args) {
         launch(args); //javafx'de application sınıfının baslatilmasini launch metodu saglar
         SettingsManager settingsManager = new SettingsManager();
         settingsManager.checkifSettings(); //once ayarlarin olup olmadigi kontrol edilecek

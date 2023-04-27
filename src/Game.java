@@ -6,7 +6,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.FileInputStream; //AAAAAAAAAAAA CİGLİK ATİCAM SİMDİ
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -14,10 +14,11 @@ public class Game extends Application {
     public static void main(String[] args) {
         SettingsManager settingsManager = new SettingsManager();
         settingsManager.checkifSettings(); //once ayarlarin olup olmadigi kontrol edilecek
-        launch(args); // oyunu baslat, // aninda bug fix kardesim
+        launch(args); // oyunu baslat,
     }
 
-    private static final String FILE_PATH = "settings.conf"; // -> settings.conf production asamasinda out/production/ClickGame icerisinde, oyunun ismi degisicek :D@Override
+    private static final String FILE_PATH = "settings.conf"; // -> settings.conf production asamasinda out/production/ClickGame icerisinde, oyunun ismi degisicek :D
+    @Override
     public void start(Stage primaryStage) {
         SettingsManager settingsMng = new SettingsManager();
         int intAudio = settingsMng.returnAudioValue();
