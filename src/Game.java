@@ -6,7 +6,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
-import java.io.FileInputStream;
+import java.io.FileInputStream; //AAAAAAAAAAAA CİGLİK ATİCAM SİMDİ
 import java.io.IOException;
 import java.util.Properties;
 
@@ -14,7 +14,7 @@ public class Game extends Application {
     public static void main(String[] args) {
         SettingsManager settingsManager = new SettingsManager();
         settingsManager.checkifSettings(); //once ayarlarin olup olmadigi kontrol edilecek
-        launch(args); // oyunu baslat,
+        launch(args); // oyunu baslat, // aninda bug fix kardesim
     }
 
     private static final String FILE_PATH = "settings.conf"; // -> settings.conf production asamasinda out/production/ClickGame icerisinde, oyunun ismi degisicek :D@Override
@@ -42,7 +42,7 @@ public class Game extends Application {
         Scene scene = new Scene(stackPane, width, height);
         primaryStage.setTitle("Beyond The Veil");
         primaryStage.setScene(scene);
-        primaryStage.setOpacity(fakeOpacity);
+        primaryStage.setOpacity(opacity);
         primaryStage.setFullScreen(isFullScreen);
         primaryStage.show();
     }
