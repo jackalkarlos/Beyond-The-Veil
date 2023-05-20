@@ -9,7 +9,7 @@ import java.util.List;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Properties;
-//just testi
+//
 public class Game extends Application {
     public static void main(String[] args) {
         SettingsManager settingsManager = new SettingsManager();
