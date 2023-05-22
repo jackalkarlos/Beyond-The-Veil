@@ -23,7 +23,7 @@ import javafx.scene.control.Button;
 public class SettingsManager extends Application{
     public static void main(String[] args) {
         checkifSettings();
-        launch(args); //test
+        launch(args); //bro just testin
     }
     private static final String FILE_PATH = "settings.conf"; // ayarlari okusun bi zahmet
     public static void checkifSettings() {
