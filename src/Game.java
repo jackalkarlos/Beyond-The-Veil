@@ -69,8 +69,7 @@ public class Game extends Application {
         //layout2 bitiş
 
         button1.setOnAction(e -> window.getScene().setRoot(layout2));
-
-
+        //
 
 
         window.setTitle("Beyond The Veil");
