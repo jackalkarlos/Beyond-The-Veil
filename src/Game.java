@@ -57,7 +57,7 @@ public class Game extends Application {
         //layout1
         VBox layout1 = new VBox(20);
         layout1.getChildren().addAll(label1, button1);
-        scene1 = new Scene(layout1, 600,300);
+        scene1 = new Scene(layout1, width,height);;
         //layout 1 ve scene 1 bitiş
 
         //layout2
