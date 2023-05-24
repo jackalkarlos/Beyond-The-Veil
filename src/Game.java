@@ -23,6 +23,7 @@ public class Game extends Application {
 
     Stage window;
     Scene scene1, scene2;
+    //commit test 2
 
     public static void main(String[] args) {
         SettingsManager settingsManager = new SettingsManager();
