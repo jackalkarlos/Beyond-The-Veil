@@ -11,6 +11,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,8 +33,6 @@ public class Game extends Application {
     private static final String FILE_PATH = "settings.conf"; // -> settings.conf production asamasinda out/production/ClickGame icerisinde, oyunun ismi degisicek :D
     @Override
     public void start(Stage primaryStage) {
-        window = primaryStage;
-
         SettingsManager settingsMng = new SettingsManager();
         int intAudio = settingsMng.returnAudioValue();
 
@@ -60,16 +59,38 @@ public class Game extends Application {
         scene1 = new Scene(layout1, width,height);;
         //layout 1 ve scene 1 bitiş
 
+        Media media = new Media(new File("src/videos/omegle.mp4").toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(media);
+        MediaView mediaView = new MediaView(mediaPlayer);
+        //mediaPlayer.setAutoPlay(true); // Otomatik olarak oynatma özelliğini etkinleştirin
+        mediaView.fitWidthProperty().bind(primaryStage.widthProperty()); // Genişlik sığacak şekilde ayarlanır
+        mediaView.fitHeightProperty().bind(primaryStage.heightProperty()); //
+        mediaPlayer.setOnEndOfMedia(() -> {
+            window.getScene().setRoot(layout1);
+
+        });
+
+        VBox esek = new VBox();
+        esek.getChildren().add(mediaView);
+
+        window = primaryStage;
+
+
+
         //layout2
         Button button2 = new Button("geri dön");
-        button2.setOnAction(e -> window.getScene().setRoot(layout1));
+        button2.setOnAction(e -> window.getScene().setRoot(layout1) );
 
         StackPane layout2 = new StackPane();
         layout2.getChildren().add(button2);
         //layout2 bitiş
 
-        button1.setOnAction(e -> window.getScene().setRoot(layout2));
+        button1.setOnAction(e -> {
+            window.getScene().setRoot(esek);
+            mediaPlayer.play();
+        });
         // a
+
 
 
         window.setTitle("Beyond The Veil");
