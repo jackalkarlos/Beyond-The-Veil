@@ -10,7 +10,10 @@ import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -25,7 +28,7 @@ import java.util.Properties;
 public class Game extends Application {
 
     Stage window;
-    Scene scene1, scene2;
+    Scene scene1, scene2, scene3;
     //commit test 2
 
     public static void main(String[] args) {
@@ -61,8 +64,11 @@ public class Game extends Application {
         BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
 
         Label label1 = new Label("yazı yazmaca");
-        label1.setFont(Font.font(24)); // Yazı büyüklüğü
+        Font font = Font.font("Calibri", FontWeight.NORMAL, FontPosture.ITALIC, 20);
+        label1.setFont(font);
+
         Button button1 = new Button("İntroyu geç");
+        button1.setTranslateY(50);
 
         //layout1
         StackPane layout1 = new StackPane();
@@ -84,8 +90,7 @@ public class Game extends Application {
         mediaView.fitWidthProperty().bind(primaryStage.widthProperty()); // Genişlik sığacak şekilde ayarlanır
         mediaView.fitHeightProperty().bind(primaryStage.heightProperty()); //
         mediaPlayer.setOnEndOfMedia(() -> {
-            window.getScene().setRoot(layout1);
-
+            window.setScene(scene3);
         });
 
         VBox esek = new VBox();
@@ -107,8 +112,14 @@ public class Game extends Application {
             window.getScene().setRoot(esek);
             mediaPlayer.play();
         });
-        // a
+        // button 3
 
+        Button button3 = new Button("marhaba");
+
+        //layout3
+        StackPane layout3 = new StackPane();
+        layout3.getChildren().add(button3);
+        scene3 = new Scene(layout3, width, height);
 
         window.setTitle("Beyond The Veil");
         window.setScene(scene1);
