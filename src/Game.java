@@ -116,9 +116,35 @@ public class Game extends Application {
 
         Button button3 = new Button("marhaba");
 
+
+        String imagePath2 = "src/ingame/backgrounds/scene3.png";
+        Image background3Image = new Image(new File(imagePath2).toURI().toString());
+        BackgroundSize background3Size = new BackgroundSize(1.0, 1.0, true, true, false, false);
+        BackgroundImage background3 = new BackgroundImage(background3Image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, background3Size);
+
+        String ekImagePath1 = "src/ingame/characters/1smile.png";
+        Image ekImage1 = new Image(new File(ekImagePath1).toURI().toString());
+        ImageView ImageView1 = new ImageView(ekImage1);
+
+        String ekImagePath2 = "src/ingame/textbox/textbox.png";
+        Image ekImage2 = new Image(new File(ekImagePath2).toURI().toString());
+        ImageView ImageView2 = new ImageView(ekImage2);
+
         //layout3
         StackPane layout3 = new StackPane();
-        layout3.getChildren().add(button3);
+        layout3.getChildren().addAll(button3, ImageView1, ImageView2);
+        layout3.setBackground(new Background(background3));
+        StackPane.setAlignment(button3, Pos.CENTER);
+        StackPane.setAlignment(ImageView1, Pos.BOTTOM_LEFT);
+        StackPane.setAlignment(ImageView2, Pos.BOTTOM_CENTER);
+
+        ImageView1.setFitWidth(525); // İstenilen genişlik değerini belirleyin
+        ImageView1.setFitHeight(1000); // İstenilen yükseklik değerini belirleyin
+        StackPane.setMargin(ImageView1, new Insets(0, 0, 0, 110)); // İstenilen boşluk değerlerini belirleyin
+
+        ImageView2.fitWidthProperty().bind(layout3.widthProperty());
+
+
         scene3 = new Scene(layout3, width, height);
 
         window.setTitle("Beyond The Veil");
