@@ -1,9 +1,12 @@
 import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -52,15 +55,29 @@ public class Game extends Application {
         String fullScreen= settingsMng.returnScreenValue();
         boolean isFullScreen=Boolean.parseBoolean(fullScreen);
 
+        String imagePath = "src/images/arkaplan.png";
+        Image backgroundImage = new Image(new File(imagePath).toURI().toString());
+        BackgroundSize backgroundSize = new BackgroundSize(1.0, 1.0, true, true, false, false);
+        BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
+
         Label label1 = new Label("yazı yazmaca");
+        label1.setFont(Font.font(24)); // Yazı büyüklüğü
         Button button1 = new Button("İntroyu geç");
+
         //layout1
-        VBox layout1 = new VBox(20);
+        StackPane layout1 = new StackPane();
+        layout1.setBackground(new Background(background));
         layout1.getChildren().addAll(label1, button1);
+        StackPane.setAlignment(label1, Pos.CENTER);
+        StackPane.setAlignment(button1, Pos.CENTER);
+        StackPane.setMargin(label1, new Insets(0, 0, 50, 0)); // Label'ın alt boşluğunu ayarlayabilirsiniz
+
         scene1 = new Scene(layout1, width,height);;
+
+
         //layout 1 ve scene 1 bitiş
 
-        Media media = new Media(new File("src/videos/omegle.mp4").toURI().toString());
+        Media media = new Media(new File("src/videos/video.mp4").toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         MediaView mediaView = new MediaView(mediaPlayer);
         //mediaPlayer.setAutoPlay(true); // Otomatik olarak oynatma özelliğini etkinleştirin
@@ -91,7 +108,6 @@ public class Game extends Application {
             mediaPlayer.play();
         });
         // a
-
 
 
         window.setTitle("Beyond The Veil");
