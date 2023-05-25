@@ -7,6 +7,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.effect.DropShadow;
+
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -63,20 +65,42 @@ public class Game extends Application {
         BackgroundSize backgroundSize = new BackgroundSize(1.0, 1.0, true, true, false, false);
         BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
 
-        Label label1 = new Label("yazı yazmaca");
-        Font font = Font.font("Calibri", FontWeight.NORMAL, FontPosture.ITALIC, 20);
-        label1.setFont(font);
+        String eminmisin = "src/ingame/textbox/sure.png";
+        Image eminim = new Image(new File(eminmisin).toURI().toString());
+        ImageView emine = new ImageView(eminim);
 
-        Button button1 = new Button("İntroyu geç");
+        String evet = "src/ingame/textbox/button.png";
+        Image evet2 = new Image(new File(evet).toURI().toString());
+        ImageView evet3 = new ImageView(eminim);
+
+        DropShadow dropShadow = new DropShadow();
+        dropShadow.setColor(Color.GRAY);
+        dropShadow.setRadius(5);
+        dropShadow.setSpread(0.5);
+
+        Button button1 = new Button("");
+        button1.setGraphic(new ImageView(evet2));
+        button1.setStyle("-fx-background-color: transparent;");
+        button1.setOnMousePressed(event -> {
+            button1.setScaleX(0.9);
+            button1.setScaleY(0.9);
+        });
+        button1.setOnMouseReleased(event -> {
+            button1.setScaleX(1.0);
+            button1.setScaleY(1.0);
+        });
+
+
+
         button1.setTranslateY(50);
 
         //layout1
         StackPane layout1 = new StackPane();
         layout1.setBackground(new Background(background));
-        layout1.getChildren().addAll(label1, button1);
-        StackPane.setAlignment(label1, Pos.CENTER);
+        layout1.getChildren().addAll(emine, button1);
+        StackPane.setAlignment(emine, Pos.CENTER);
         StackPane.setAlignment(button1, Pos.CENTER);
-        StackPane.setMargin(label1, new Insets(0, 0, 50, 0)); // Label'ın alt boşluğunu ayarlayabilirsiniz
+        StackPane.setMargin(emine, new Insets(0, 0, 50, 0)); // Label'ın alt boşluğunu ayarlayabilirsiniz
 
         scene1 = new Scene(layout1, width,height);;
 
