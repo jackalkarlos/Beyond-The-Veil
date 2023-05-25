@@ -1,3 +1,5 @@
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -18,6 +20,7 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 
 import java.io.File;
@@ -28,6 +31,11 @@ import java.io.IOException;
 import java.util.Properties;
 //
 public class Game extends Application {
+
+    private static final String kayanyazi = "Yazı yazmaca";// Yazılacak meti
+    private static final int yazidelay = 100; // Yazma gecikmesi (milisaniye cinsinden)
+    private static final int FONT_SIZE = 20; // Yazı font büyüklüğü
+    private int currentIndex = 0; // Yazıda işlenen karakterin indeksi
 
     Stage window;
     Scene scene1, scene2, scene3;
@@ -154,10 +162,25 @@ public class Game extends Application {
 
         //layout3
         StackPane layout3 = new StackPane();
+        layout3.setAlignment(Pos.BOTTOM_LEFT);
         layout3.getChildren().addAll(ImageView1, ImageView2);
         layout3.setBackground(new Background(background3));
         StackPane.setAlignment(ImageView1, Pos.BOTTOM_LEFT);
         StackPane.setAlignment(ImageView2, Pos.BOTTOM_CENTER);
+
+
+        String kayanyazi ="Dünyaları yıkılan maymun karşıma çıktı. Kafasını eline koymuş bir şekilde bana doğru yöneldi ve bana baktı. Sanki gözlerinin içerisinde bir deprem olmuş ve tüm muzlarının üstüne ağaç düşmüş gibiydi. Bu maymun çok üzgündü ve yardıma ihtiyacı vardı. Ona yardım etmeliydim.";
+
+        Text text = new Text();
+        text.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+        layout3.getChildren().add(text);
+        text.setTranslateY(-250);
+        text.setTranslateX(200);
+        text.setFill(Color.CORNFLOWERBLUE);
+
+        text.setWrappingWidth(1520); // Bir satırın genişliğini belirleyin
+        text.setLineSpacing(10); // Satırlar arasındaki boşluğu ayarlayın
+        text.setText(kayanyazi); // Metnin tamamını ayarlayın
 
         ImageView1.setFitWidth(525); // İstenilen genişlik değerini belirleyin
         ImageView1.setFitHeight(1000); // İstenilen yükseklik değerini belirleyin
@@ -165,8 +188,24 @@ public class Game extends Application {
 
         ImageView2.fitWidthProperty().bind(layout3.widthProperty());
 
+        layout3.setOnMouseClicked(event -> {
+            currentIndex = kayanyazi.length(); // Yazıda işlenen karakterin indeksini son karaktere set et
+            text.setText(kayanyazi); // Kayan yazıyı tamamlanan metin olarak güncelle
+        });
 
         scene3 = new Scene(layout3, width, height);
+
+        primaryStage.setScene(scene3);
+        primaryStage.show();
+        Timeline typingTimeline = new Timeline(
+                new KeyFrame(Duration.millis(yazidelay), event -> {
+                    if (currentIndex <= kayanyazi.length()) {
+                        text.setText(kayanyazi.substring(0, currentIndex++));
+                    }
+                })
+        );
+        typingTimeline.setCycleCount(kayanyazi.length() + 1);
+        typingTimeline.play();
 
         window.setTitle("Beyond The Veil");
         window.setScene(scene1);
