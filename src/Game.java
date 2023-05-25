@@ -231,7 +231,7 @@ public class Game extends Application {
 
         typingTimeline.play();
         window.setTitle("Beyond The Veil");
-        window.setScene(scene1);
+        window.setScene(scene3);
         window.setOpacity(opacity);
         window.setFullScreen(isFullScreen);
         window.show();
