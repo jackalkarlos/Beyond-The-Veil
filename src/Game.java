@@ -5,31 +5,21 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.scene.effect.DropShadow;
-
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
-//
 public class Game extends Application {
 
     private static final String kayanyazi = "Yazı yazmaca";// Yazılacak meti
@@ -169,16 +159,17 @@ public class Game extends Application {
         StackPane.setAlignment(ImageView2, Pos.BOTTOM_CENTER);
 
 
-        String kayanyazi ="Dünyaları yıkılan maymun karşıma çıktı. Kafasını eline koymuş bir şekilde bana doğru yöneldi ve bana baktı. Sanki gözlerinin içerisinde bir deprem olmuş ve tüm muzlarının üstüne ağaç düşmüş gibiydi. Bu maymun çok üzgündü ve yardıma ihtiyacı vardı. Ona yardım etmeliydim.";
+        String kayanyazi = "Dünyaları yıkılan maymun karşıma çıktı. Kafasını eline koymuş bir şekilde bana doğru yöneldi ve bana baktı. Sanki gözlerinin içerisinde bir deprem olmuş ve tüm muzlarının üstüne ağaç düşmüş gibiydi. Bu maymun çok üzgündü ve yardıma ihtiyacı vardı. Ona yardım etmeliydim.";
+
 
         Text text = new Text();
-        text.setFont(Font.font("Arial", FontWeight.BOLD, 24));
+        text.setFont(Font.font("Arial", FontWeight.BOLD, 17.5)); // Yazıyı 17.5 punto boyutunda ayarlandı.
         layout3.getChildren().add(text);
-        text.setTranslateY(-250);
-        text.setTranslateX(200);
+        text.setTranslateY(-220); // Yazıyı 220 birim aşağıya kaydırdık.
+        text.setTranslateX(167);
         text.setFill(Color.CORNFLOWERBLUE);
 
-        text.setWrappingWidth(1520); // Bir satırın genişliğini belirleyin
+        text.setWrappingWidth(1400); // Bir satırın genişliğini belirleyin
         text.setLineSpacing(10); // Satırlar arasındaki boşluğu ayarlayın
         text.setText(kayanyazi); // Metnin tamamını ayarlayın
 
