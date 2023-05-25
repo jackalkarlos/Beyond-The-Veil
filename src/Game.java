@@ -115,7 +115,7 @@ public class Game extends Application {
 
         //layout 1 ve scene 1 bitiş
 
-        Media media = new Media(new File("src/videos/video.mp4").toURI().toString());
+        Media media = new Media(new File("src/videos/intro.mp4").toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         MediaView mediaView = new MediaView(mediaPlayer);
         //mediaPlayer.setAutoPlay(true); // Otomatik olarak oynatma özelliğini etkinleştirin
