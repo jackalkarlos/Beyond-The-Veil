@@ -22,7 +22,7 @@ import javafx.util.Duration;
 import java.io.File;
 public class Game extends Application {
 
-    private static final String kayanyazi = "Yazı yazmaca";// Yazılacak meti
+    private static final String kayanyazi = "Başlamak İstediğine Eminmisin";// Yazılacak meti
     private static final int yazidelay = 100; // Yazma gecikmesi (milisaniye cinsinden)
     private static final int FONT_SIZE = 20; // Yazı font büyüklüğü
     private int currentIndex = 0; // Yazıda işlenen karakterin indeksi
@@ -198,6 +198,38 @@ public class Game extends Application {
         typingTimeline.setCycleCount(kayanyazi.length() + 1);
         typingTimeline.play();
 
+        String buttonImageUrl = "file:src/ingame/textbox/button.png"; // Butonun görselinin dosya yolu
+
+        Image buttonImage = new Image(buttonImageUrl);
+        ImageView buttonImageView = new ImageView(buttonImage);
+        buttonImageView.setFitWidth(100); // Görselin genişlik ve yükseklik ayarları
+        buttonImageView.setFitHeight(40);
+
+        Button nextButton = new Button();
+        nextButton.setGraphic(buttonImageView); // Görseli butona ekle
+
+        nextButton.setOnAction(event -> {
+            // Yeni sahneyi oluştur
+            Stage newStage = new Stage();
+            StackPane newLayout = new StackPane();
+            Scene newScene = new Scene(newLayout, width, height);
+            newStage.setScene(newScene);
+            newStage.show();
+
+            // Mevcut sahneyi gizle
+            primaryStage.hide();
+        });
+
+        layout3.getChildren().add(nextButton);
+        StackPane.setAlignment(nextButton, Pos.BOTTOM_RIGHT);
+
+        nextButton.setVisible(false); // İlk başta butonu gizle
+
+        typingTimeline.setOnFinished(event -> {
+            nextButton.setVisible(true); // Yazı gösterimi tamamlandığında butonu göster
+        });
+
+        typingTimeline.play();
         window.setTitle("Beyond The Veil");
         window.setScene(scene1);
         window.setOpacity(opacity);
