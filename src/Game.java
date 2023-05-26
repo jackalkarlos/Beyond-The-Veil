@@ -9,7 +9,6 @@ import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseButton;
 import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -176,7 +175,7 @@ public class Game extends Application {
         Text text = new Text();
         text.setFont(Font.font("Arial", FontWeight.BOLD, 22));
         layout3.getChildren().add(text);
-        text.setTranslateY(-220);
+        text.setTranslateY(-167);
         text.setTranslateX(167);
         text.setFill(Color.CORNFLOWERBLUE);
         text.setWrappingWidth(1400);
@@ -289,10 +288,10 @@ public class Game extends Application {
         text2.setWrappingWidth(1400);
         text2.setLineSpacing(10);
         layout4.getChildren().add(text2);
-        text2.setTranslateY(-220);
+        text2.setTranslateY(-167);
         text2.setTranslateX(167);
 
-        String kayanyazi2 = "babisbabisbabisbabis";
+        String kayanyazi2 = "Geçenlerde kendi içimde bir toplantı düzenledim. Tek katılımcı bendim, katılımcı sayısı epey yüksekti. Düşüncelerimi ve hislerimi konuştuk bol bol. Birisi çıkıp 'hislerin umrumuzda değil' dedi, onu görememiştim, ama neden bu şekilde bağırdığını anlayabiliyordum. \n";
 
         layout4.setOnMouseClicked(event -> {
             if (isFirstClick) { // İlk tıklama
