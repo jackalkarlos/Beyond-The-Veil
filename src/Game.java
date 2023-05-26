@@ -1,4 +1,3 @@
-import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -6,7 +5,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -30,9 +28,16 @@ public class Game extends Application {
     private int currentIndex = 0; // Yazıda işlenen karakterin indeksi
     private boolean textFinished = false; // Yazı tamamlandığında true olacak durum değişkeni
     private boolean isFirstClick = true;
+    VBox intro = new VBox();
+    StackPane sahne1 = new StackPane();
+    VBox sahne1vbox = new VBox();
 
     Stage window;
     Scene scene1, scene2, scene3, scene4, scene5, scene6, scene7, scene8, scene9, scene10;
+    Text sahne1yazi = new Text();
+    Text AllyName = new Text();
+
+
     //commit test 2
 
     public static void main(String[] args) {
@@ -44,6 +49,7 @@ public class Game extends Application {
     private static final String FILE_PATH = "settings.conf"; // -> settings.conf production asamasinda out/production/ClickGame icerisinde, oyunun ismi degisicek :D
     @Override
     public void start(Stage primaryStage) {
+        //ayarlarin okunmasi
         SettingsManager settingsMng = new SettingsManager();
         int intAudio = settingsMng.returnAudioValue();
 
@@ -61,25 +67,24 @@ public class Game extends Application {
 
         String fullScreen= settingsMng.returnScreenValue();
         boolean isFullScreen=Boolean.parseBoolean(fullScreen);
+        //ayarlarin okunmasinin bitirilmesi
 
-        String imagePath = "src/ingame/backgrounds/scene3.png";
-        Image backgroundImage = new Image(new File(imagePath).toURI().toString());
-        BackgroundSize backgroundSize = new BackgroundSize(1.0, 1.0, true, true, false, false);
-        BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
+        //Burası Scene1 Tasarımının başladığı yer. EMIN MISIN KISMI!!!!! ILK SCENE!!!
 
-        String eminmisin = "src/ingame/textbox/sure.png";
-        Image eminim = new Image(new File(eminmisin).toURI().toString());
-        ImageView emine = new ImageView(eminim);
 
+
+        //Burası Emin Misin Fotoğraf Tanımlaması
+        String eminmisinlocation = "src/ingame/textbox/sure.png";
+        Image eminmisinimage= new Image(new File(eminmisinlocation).toURI().toString());
+        ImageView eminmisin = new ImageView(eminmisinimage);
+        //Burası Emin Misin Fotoğraf Tanımlamasının Bitişi
+
+        //Burası Emin Misin Butonunun Fotoğraf Tanımlaması
         String evet = "src/ingame/textbox/button.png";
         Image evet2 = new Image(new File(evet).toURI().toString());
-        ImageView evet3 = new ImageView(eminim);
+        //Burası Emin Misin Butonunun Fotoğraf Tanımlaması
 
-        DropShadow dropShadow = new DropShadow();
-        dropShadow.setColor(Color.GRAY);
-        dropShadow.setRadius(5);
-        dropShadow.setSpread(0.5);
-
+        // Emin misin Butonu Fonksiyon Ayarları
         Button button1 = new Button("");
         button1.setGraphic(new ImageView(evet2));
         button1.setStyle("-fx-background-color: transparent;");
@@ -91,123 +96,109 @@ public class Game extends Application {
             button1.setScaleX(1.0);
             button1.setScaleY(1.0);
         });
-
-
-
         button1.setTranslateY(50);
+        // Emin misin Butonu bitişi
 
-        //layout1
+        // Scene 1 Arkaplan Resmi
+        String imagePath = "src/ingame/backgrounds/scene3.png";
+        Image backgroundImage = new Image(new File(imagePath).toURI().toString());
+        BackgroundSize backgroundSize = new BackgroundSize(1.0, 1.0, true, true, false, false);
+        BackgroundImage background = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, backgroundSize);
+        // Scene 1 Arkaplan Resmi Bitişi
+
+
+        // Scene1'e eklenecek layout
         StackPane layout1 = new StackPane();
         layout1.setBackground(new Background(background));
-        layout1.getChildren().addAll(emine, button1);
-        StackPane.setAlignment(emine, Pos.CENTER);
+        layout1.getChildren().addAll(eminmisin, button1);
+        StackPane.setAlignment(eminmisin, Pos.CENTER);
         StackPane.setAlignment(button1, Pos.CENTER);
-        StackPane.setMargin(emine, new Insets(0, 0, 50, 0)); // Label'ın alt boşluğunu ayarlayabilirsiniz
+        StackPane.setMargin(eminmisin, new Insets(0, 0, 50, 0)); // Label'ın alt boşluğunu ayarlayabilirsiniz
 
-        scene1 = new Scene(layout1, width,height);;
+        scene1 = new Scene(layout1, width,height);
+        //Layout 1 ve Scene 1 bitiş
 
-
-        //layout 1 ve scene 1 bitiş
-
-        Media media = new Media(new File("src/videos/intro.mp4").toURI().toString());
+        //Burası yine Scene1 içinde, Sadece  yni bir layout oluşturulup layout Değişikliği yapılıyor, bu şekilde gitmeliyiz
+        //intro vbox
+        Media media = new Media(new File("src/videos/test.mp4").toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         MediaView mediaView = new MediaView(mediaPlayer);
-        //mediaPlayer.setAutoPlay(true); // Otomatik olarak oynatma özelliğini etkinleştirin
-        mediaView.fitWidthProperty().bind(primaryStage.widthProperty()); // Genişlik sığacak şekilde ayarlanır
-        mediaView.fitHeightProperty().bind(primaryStage.heightProperty()); //
-        mediaPlayer.setOnEndOfMedia(() -> {
-            window.setScene(scene3);
-        });
-
-        VBox esek = new VBox();
-        esek.getChildren().add(mediaView);
-
+        mediaView.fitWidthProperty().bind(primaryStage.widthProperty());
+        mediaView.fitHeightProperty().bind(primaryStage.heightProperty());
+        intro.getChildren().add(mediaView);
         window = primaryStage;
 
-
-
-        //layout2
-        Button button2 = new Button("geri dön");
-        button2.setOnAction(e -> window.getScene().setRoot(layout1) );
-
-        StackPane layout2 = new StackPane();
-        layout2.getChildren().add(button2);
-        //layout2 bitiş
-
         button1.setOnAction(e -> {
-            window.getScene().setRoot(esek);
+            window.getScene().setRoot(intro); //scene1'i alıp rootunu intro olarak ayarlıyor
             mediaPlayer.play();
         });
+        mediaPlayer.setOnEndOfMedia(() -> {
+            window.getScene().setRoot(sahne1vbox); //scene1'i alıp rootunu intro olarak ayarlıyor
+        });
 
-        // layout3 arkaplan
+        //sahne1 vbox'u için karakter fotosu
+        String ekImagePath1 = "src/ingame/characters/katman.png";
+        Image ekImage1 = new Image(new File(ekImagePath1).toURI().toString());
+        ImageView ImageView1 = new ImageView(ekImage1);
+
+        //sahne1 vbox'u için arkaplan resmi
         String imagePath2 = "src/images/2.png";
         Image background3Image = new Image(new File(imagePath2).toURI().toString());
         BackgroundSize background3Size = new BackgroundSize(1.0, 1.0, true, true, false, false);
         BackgroundImage background3 = new BackgroundImage(background3Image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, background3Size);
 
-        String ekImagePath1 = "src/ingame/characters/katman.png";
-        Image ekImage1 = new Image(new File(ekImagePath1).toURI().toString());
-        ImageView ImageView1 = new ImageView(ekImage1);
-
+        //sahne1 vbox'u için textbox resmi
         String ekImagePath2 = "src/ingame/textbox/textbox.png";
         Image ekImage2 = new Image(new File(ekImagePath2).toURI().toString());
         ImageView ImageView2 = new ImageView(ekImage2);
 
-        //layout3
-        StackPane layout3 = new StackPane();
-        layout3.setAlignment(Pos.BOTTOM_LEFT);
-        layout3.getChildren().addAll(ImageView1, ImageView2);
-        layout3.setBackground(new Background(background3));
+        //sahne1 vbox
+        sahne1.setAlignment(Pos.BOTTOM_LEFT);
+        sahne1.getChildren().addAll(ImageView1, ImageView2);
+        sahne1.setBackground(new Background(background3));
         StackPane.setAlignment(ImageView1, Pos.BOTTOM_LEFT);
         StackPane.setAlignment(ImageView2, Pos.BOTTOM_CENTER);
 
         ImageView1.setFitWidth(525); // İstenilen genişlik değerini belirleyin
         ImageView1.setFitHeight(1000); // İstenilen yükseklik değerini belirleyin
         StackPane.setMargin(ImageView1, new Insets(0, 0, 0, 110)); // İstenilen boşluk değerlerini belirleyin
+        ImageView2.fitWidthProperty().bind(sahne1.widthProperty());
 
-        ImageView2.fitWidthProperty().bind(layout3.widthProperty());
-
-
-        String kayanyazi = "(Ally'nin iç sesi: 1.. 2.. 3.. 4.. 5.. 6..)\nKoyunları saymakla geçen günlerime yeni bir tanesi daha eklendi. Cidden, toplum farklı olanı dışladığını sanırken, ben onları dışlamıştım aslında. Ya durum tam tersiyse?";
-
-
-        //chatbox kayan yazı
-        Text text = new Text();
-        text.setFont(Font.font("Arial", FontWeight.BOLD, 22));
-        layout3.getChildren().add(text);
-        text.setTranslateY(-167);
-        text.setTranslateX(167);
-        text.setFill(Color.CORNFLOWERBLUE);
-        text.setWrappingWidth(1400);
-        text.setLineSpacing(10);
-
-        //chatbox isim
-        Text extraText = new Text();
-        extraText.setFont(Font.font("Arial", FontWeight.BOLD, 32));
-        extraText.setText("Ally");
-        extraText.setFill(Color.PALEVIOLETRED);
-        extraText.setWrappingWidth(1400);
-        extraText.setLineSpacing(10);
-        extraText.setTranslateX(310);
-        extraText.setTranslateY(-350);
-        extraText.setOpacity(0);
-        layout3.getChildren().add(extraText);
-
-        FadeTransition ft = new FadeTransition(Duration.millis(3000), extraText);
-        ft.setFromValue(0.0);
-        ft.setToValue(1.0);
-        ft.play();
+        //ChatBox İsim
+        AllyName.setFont(Font.font("Arial", FontWeight.BOLD, 32));
+        AllyName.setText("Ally");
+        AllyName.setFill(Color.PALEVIOLETRED);
+        AllyName.setWrappingWidth(1400);
+        AllyName.setLineSpacing(10);
+        AllyName.setTranslateX(310);
+        AllyName.setTranslateY(-350);
+        sahne1.getChildren().add(AllyName);
 
 
+        String kayanyazi = "(Ally'nin iç sesi: 1.. 2.. 3.. 4.. 5.. 6..)\nÇekiyom La Havle\nEdiyom Test Be";
 
-        scene3 = new Scene(layout3, width, height);
-        scene3.setOnMouseEntered(event -> {
-            ft.playFromStart();
+//Chatbox Kayan Yazı
+        sahne1yazi.setFont(Font.font("Arial", FontWeight.BOLD, 30));
+        sahne1.getChildren().add(sahne1yazi);
+        sahne1yazi.setTranslateY(-230);
+        sahne1yazi.setTranslateX(167);
+        sahne1yazi.setFill(Color.CORNFLOWERBLUE);
+        sahne1yazi.setWrappingWidth(1400);
+        sahne1yazi.setLineSpacing(10);
+
+        sahne1.setOnMouseEntered(event -> {
             if (!textFinished && currentIndex <= kayanyazi.length()) {
                 Timeline typingTimeline = new Timeline(
                         new KeyFrame(Duration.millis(yazidelay), e -> {
                             if (currentIndex <= kayanyazi.length()) {
-                                text.setText(kayanyazi.substring(0, currentIndex++));
+                                String currentText = kayanyazi.substring(0, currentIndex);
+                                int newLineIndex = currentText.indexOf("\n", currentIndex - 1);
+                                if (newLineIndex >= 0) {
+                                    int numLines = currentText.substring(0, newLineIndex).split("\n").length;
+                                    sahne1yazi.setTranslateY(-230 + numLines * 45);
+                                }
+                                sahne1yazi.setText(currentText);
+                                currentIndex++;
                                 // Metin tamamlanınca textFinished'i güncelle
                                 if (currentIndex == kayanyazi.length()) {
                                     textFinished = true;
@@ -219,11 +210,14 @@ public class Game extends Application {
                 typingTimeline.play();
             }
         });
-        layout3.setOnMouseClicked(event -> {
+
+
+
+        sahne1.setOnMouseClicked(event -> {
             if (isFirstClick) { // İlk tıklama
                 if (!textFinished) {
                     currentIndex = kayanyazi.length();
-                    text.setText(kayanyazi);
+                    sahne1yazi.setText(kayanyazi);
                     textFinished = true;
                 }
                 isFirstClick = false;
@@ -237,104 +231,14 @@ public class Game extends Application {
         });
 
 
-        String imagePath3 = "src/images/2.png";
-        Image background4Image = new Image(new File(imagePath3).toURI().toString());
-        BackgroundSize background4Size = new BackgroundSize(1.0, 1.0, true, true, false, false);
-        BackgroundImage background4 = new BackgroundImage(background4Image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, background4Size);
+        sahne1vbox.prefHeightProperty().bind(scene1.heightProperty());
+        sahne1vbox.prefWidthProperty().bind(scene1.widthProperty());
 
-        String ekImagePath3 = "src/ingame/characters/sm1_sensei_pout.png";
-        Image ekImage3 = new Image(new File(ekImagePath3).toURI().toString());
-        ImageView ImageView3 = new ImageView(ekImage3);
-
-        String ekImagePath4 = "src/ingame/textbox/textbox.png";
-        Image ekImage4 = new Image(new File(ekImagePath4).toURI().toString());
-        ImageView ImageView4 = new ImageView(ekImage4);
-
-//layout4
-        StackPane layout4 = new StackPane();
-        layout4.setAlignment(Pos.BOTTOM_LEFT);
-        layout4.getChildren().addAll(ImageView3, ImageView4);
-        layout4.setBackground(new Background(background4));
-        StackPane.setAlignment(ImageView3, Pos.BOTTOM_LEFT);
-        StackPane.setAlignment(ImageView4, Pos.BOTTOM_CENTER);
-
-        ImageView3.setFitWidth(525); // İstenilen genişlik değerini belirleyin
-        ImageView3.setFitHeight(1000); // İstenilen yükseklik değerini belirleyin
-        StackPane.setMargin(ImageView3, new Insets(0, 0, 0, 110)); // İstenilen boşluk değerlerini belirleyin
-
-        ImageView4.fitWidthProperty().bind(layout4.widthProperty());
-
-
-//chatbox isim
-        Text extraText2 = new Text();
-        extraText2.setFont(Font.font("Arial", FontWeight.BOLD, 32));
-        extraText2.setText("Ally");
-        extraText2.setFill(Color.PALEVIOLETRED);
-        extraText2.setWrappingWidth(1400);
-        extraText2.setLineSpacing(10);
-        extraText2.setTranslateX(310);
-        extraText2.setTranslateY(-350);
-        extraText2.setOpacity(0);
-        layout4.getChildren().add(extraText2);
-
-        FadeTransition ft2 = new FadeTransition(Duration.millis(3000), extraText2);
-        ft2.setFromValue(0.0);
-        ft2.setToValue(1.0);
-        ft2.play();
-
-        //chatbox kayan yazı
-        Text text2 = new Text();
-        text2.setFont(Font.font("Arial", FontWeight.BOLD, 22));
-        text2.setFill(Color.CORNFLOWERBLUE);
-        text2.setWrappingWidth(1400);
-        text2.setLineSpacing(10);
-        layout4.getChildren().add(text2);
-        text2.setTranslateY(-167);
-        text2.setTranslateX(167);
-
-        String kayanyazi2 = "Geçenlerde kendi içimde bir toplantı düzenledim. Tek katılımcı bendim katılımcı sayısı epey yüksekti. Düşüncelerimi ve hislerimi konuştuk bol bol. Birisi çıkıp 'hislerin umrumuzda değil' dedi, onu görememiştim, ama neden bu şekilde bağırdığını anlayabiliyordum. \n";
-
-        layout4.setOnMouseClicked(event -> {
-            if (isFirstClick) { // İlk tıklama
-                if (!textFinished) {
-                    currentIndex = kayanyazi2.length();
-                    text2.setText(kayanyazi2);
-                    textFinished = true;
-                }
-                isFirstClick = false;
-            } else { // İkinci tıklama
-                // İstenilen işlemleri yapabilirsiniz
-            }
-        });
-
-        scene4 = new Scene(layout4, width, height);
-
-        primaryStage.setScene(scene4);
-        primaryStage.show();
-
-        scene4.setOnMouseEntered(event -> {
-            ft2.playFromStart();
-            if (!textFinished && currentIndex <= kayanyazi2.length()) {
-                Timeline typingTimeline = new Timeline(
-                        new KeyFrame(Duration.millis(yazidelay), e -> {
-                            if (currentIndex <= kayanyazi2.length()) {
-                                text2.setText(kayanyazi2.substring(0, currentIndex++));
-                                // Metin tamamlandığında textFinished'i güncelleyin
-                                if (currentIndex == kayanyazi2.length()) {
-                                    textFinished = true;
-                                }
-                            }
-                        })
-                );
-                typingTimeline.setCycleCount(kayanyazi2.length() + 1);
-                typingTimeline.play();
-            }
-        });
-
+        sahne1vbox.getChildren().add(sahne1);
 
 
         window.setTitle("Beyond The Veil");
-        window.setScene(scene3);
+        window.setScene(scene1);
         window.setOpacity(opacity);
         window.setFullScreen(isFullScreen);
         window.show();

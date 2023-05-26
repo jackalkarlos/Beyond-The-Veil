@@ -71,6 +71,7 @@ public class OyunMenu extends Application {
             Stage gameStage = new Stage();
             Game gameApp = new Game();
             gameApp.start(gameStage);
+            mediaPlayer.stop();
             primaryStage.close();
         });
         btnBaslat.setOnMouseEntered(event -> {
@@ -85,6 +86,7 @@ public class OyunMenu extends Application {
         btnCikis.setGraphic(new ImageView(cikisbutonimage));
         btnCikis.setBackground(Background.EMPTY);
         btnCikis.setOnAction(event -> {
+            mediaPlayer.stop();
             primaryStage.close();
         });
         btnCikis.setOnMouseEntered(event -> {
@@ -122,6 +124,8 @@ public class OyunMenu extends Application {
                     SettingsManager settingsManagerApp = new SettingsManager();
                     settingsManagerApp.start(settingsManagerStage);
                     primaryStage.close();
+                    mediaPlayer.stop();
+
         });
 
         // Stackpane (duzen ve ortalama icin, masa ve masadaki tabaklar gibi dusunun) -> konum belirleme isleri burda olacak.
