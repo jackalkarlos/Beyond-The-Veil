@@ -200,23 +200,7 @@ public class Game extends Application {
 
 
 
-        layout3.setOnMouseClicked(event -> {
-            if (isFirstClick) { // İlk tıklama
-                if (!textFinished) {
-                    currentIndex = kayanyazi.length();
-                    text.setText(kayanyazi);
-                    textFinished = true;
-                }
-                isFirstClick = false;
-            } else { // İkinci tıklama
-                window.setScene(scene4);
-            }
-        });
-
         scene3 = new Scene(layout3, width, height);
-
-        primaryStage.setScene(scene3);
-        primaryStage.show();
         scene3.setOnMouseEntered(event -> {
             ft.playFromStart();
             if (!textFinished && currentIndex <= kayanyazi.length()) {
@@ -235,6 +219,23 @@ public class Game extends Application {
                 typingTimeline.play();
             }
         });
+        layout3.setOnMouseClicked(event -> {
+            if (isFirstClick) { // İlk tıklama
+                if (!textFinished) {
+                    currentIndex = kayanyazi.length();
+                    text.setText(kayanyazi);
+                    textFinished = true;
+                }
+                isFirstClick = false;
+            } else { // İkinci tıklama
+                window.setScene(scene4);
+                // Sahne geçişinde değişkenleri sıfırla
+                isFirstClick = true;
+                textFinished = false;
+                currentIndex = 0;
+            }
+        });
+
 
         String imagePath3 = "src/images/2.png";
         Image background4Image = new Image(new File(imagePath3).toURI().toString());
@@ -329,6 +330,7 @@ public class Game extends Application {
                 typingTimeline.play();
             }
         });
+
 
 
         window.setTitle("Beyond The Veil");
