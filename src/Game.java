@@ -1,5 +1,3 @@
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -16,12 +14,11 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.util.Duration;
 
 import java.io.File;
 public class Game extends Application {
 
-    private static final int yazidelay = 60; // Yazma gecikmesi (milisaniye cinsinden)
+    public static final int yazidelay = 60; // Yazma gecikmesi (milisaniye cinsinden)
     private int currentIndex = 0; // Yazıda işlenen karakterin indeksi
     private boolean textFinished = false; // Yazı tamamlandığında true olacak durum değişkeni
     private boolean isFirstClick = true;
@@ -171,78 +168,42 @@ public class Game extends Application {
         AllyName.setTranslateY(-350);
         sahne1.getChildren().add(AllyName);
 
+        String kayanyazi1 = "(Ally'nin iç sesi: 1.. 2.. 3.. 4.. 5.. 6..)\nÇekiyom La Havle\nEdiyom Test Be";
+        String kayanyazi2 = "İkinci yazı";
 
-        String kayanyazi = "(Ally'nin iç sesi: 1.. 2.. 3.. 4.. 5.. 6..)\nÇekiyom La Havle\nEdiyom Test Be";
-
-//Chatbox Kayan Yazı
+        Text sahne1yazi = new Text();
         sahne1yazi.setFont(Font.font("Arial", FontWeight.BOLD, 30));
-        sahne1.getChildren().add(sahne1yazi);
-        sahne1yazi.setTranslateY(-240);
-        sahne1yazi.setTranslateX(180);
         sahne1yazi.setFill(Color.WHITESMOKE);
         sahne1yazi.setWrappingWidth(1400);
         sahne1yazi.setLineSpacing(10);
 
+        YazıAnimasyonu animasyon1 = new YazıAnimasyonu(kayanyazi1, sahne1yazi);
+        YazıAnimasyonu animasyon2 = new YazıAnimasyonu(kayanyazi2, sahne1yazi);
+
+        sahne1.getChildren().add(sahne1yazi);
+        sahne1yazi.setTranslateY(-240);
+        sahne1yazi.setTranslateX(180);
+
         sahne1.setOnMouseEntered(event -> {
-            if (!textFinished && currentIndex <= kayanyazi.length()) {
-                Timeline typingTimeline = new Timeline(
-                        new KeyFrame(Duration.millis(yazidelay), e -> {
-                            if (currentIndex <= kayanyazi.length()) {
-                                String currentText = kayanyazi.substring(0, currentIndex);
-                                int newLineIndex = currentText.indexOf("\n", currentIndex - 1);
-                                if (newLineIndex >= 0) {
-                                    int numLines = currentText.substring(0, newLineIndex).split("\n").length;
-                                    sahne1yazi.setTranslateY(-240 + numLines * 46);
-                                }
-                                sahne1yazi.setText(currentText);
-                                currentIndex++;
-                                // Metin tamamlanınca textFinished'i güncelle
-                                if (currentIndex == kayanyazi.length()) {
-                                    textFinished = true;
-                                }
-                            }
-                        })
-                );
-                typingTimeline.setCycleCount(kayanyazi.length() + 1);
-                typingTimeline.play();
+            if (!animasyon1.isAnimasyonTamamlandı()) {
+                animasyon1.baslat();
             }
         });
-
-
 
         sahne1.setOnMouseClicked(event -> {
             if (isFirstClick) { // İlk tıklama
-                if (!textFinished) {
-                    Timeline typingTimeline = new Timeline(
-                            new KeyFrame(Duration.millis(1), e -> {
-                                if (currentIndex <= kayanyazi.length()) {
-                                    String currentText = kayanyazi.substring(0, currentIndex);
-                                    int newLineIndex = currentText.indexOf("\n", currentIndex - 1);
-                                    if (newLineIndex >= 0) {
-                                        int numLines = currentText.substring(0, newLineIndex).split("\n").length;
-                                        sahne1yazi.setTranslateY(-230 + numLines * 45);
-                                    }
-                                    sahne1yazi.setText(currentText);
-                                    currentIndex++;
-                                    // Metin tamamlanınca textFinished'i güncelle
-                                    if (currentIndex == kayanyazi.length()) {
-                                        textFinished = true;
-                                    }
-                                }
-                            })
-                    );
-                    typingTimeline.setCycleCount(kayanyazi.length() + 1);
-                    typingTimeline.play();
+                if (!animasyon1.isAnimasyonTamamlandı()) {
+                    animasyon1.tamamla();
                 }
                 isFirstClick = false;
             } else { // İkinci tıklama
-                window.setScene(scene4);
-                // Sahne geçişinde değişkenleri sıfırla
-                isFirstClick = true;
-                textFinished = false;
-                currentIndex = 0;
+                if (!animasyon2.isAnimasyonTamamlandı()) {
+                    animasyon2.baslat();
+                }
             }
         });
+
+
 
 
 
