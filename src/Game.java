@@ -292,7 +292,7 @@ public class Game extends Application {
         text2.setTranslateY(-167);
         text2.setTranslateX(167);
 
-        String kayanyazi2 = "Geçenlerde kendi içimde bir toplantı düzenledim. Tek katılımcı bendim, katılımcı sayısı epey yüksekti. Düşüncelerimi ve hislerimi konuştuk bol bol. Birisi çıkıp 'hislerin umrumuzda değil' dedi, onu görememiştim, ama neden bu şekilde bağırdığını anlayabiliyordum. \n";
+        String kayanyazi2 = "Geçenlerde kendi içimde bir toplantı düzenledim. Tek katılımcı bendim katılımcı sayısı epey yüksekti. Düşüncelerimi ve hislerimi konuştuk bol bol. Birisi çıkıp 'hislerin umrumuzda değil' dedi, onu görememiştim, ama neden bu şekilde bağırdığını anlayabiliyordum. \n";
 
         layout4.setOnMouseClicked(event -> {
             if (isFirstClick) { // İlk tıklama
