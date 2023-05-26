@@ -21,10 +21,7 @@ import javafx.util.Duration;
 import java.io.File;
 public class Game extends Application {
 
-    private static final String kayanyazi = "Başlamak İstediğine Eminmisin";// Yazılacak meti
-    private static final String kayanyazi2 = "Başlamak İstediğine Eminmisin";
-    private static final int yazidelay = 100; // Yazma gecikmesi (milisaniye cinsinden)
-    private static final int FONT_SIZE = 20; // Yazı font büyüklüğü
+    private static final int yazidelay = 60; // Yazma gecikmesi (milisaniye cinsinden)
     private int currentIndex = 0; // Yazıda işlenen karakterin indeksi
     private boolean textFinished = false; // Yazı tamamlandığında true olacak durum değişkeni
     private boolean isFirstClick = true;
@@ -142,10 +139,11 @@ public class Game extends Application {
         ImageView ImageView1 = new ImageView(ekImage1);
 
         //sahne1 vbox'u için arkaplan resmi
-        String imagePath2 = "src/images/2.png";
-        Image background3Image = new Image(new File(imagePath2).toURI().toString());
-        BackgroundSize background3Size = new BackgroundSize(1.0, 1.0, true, true, false, false);
-        BackgroundImage background3 = new BackgroundImage(background3Image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, background3Size);
+
+        String backPath = "src/images/2.png";
+        Image backImage = new Image(new File(backPath).toURI().toString());
+        ImageView backImageView1 = new ImageView(backImage);
+
 
         //sahne1 vbox'u için textbox resmi
         String ekImagePath2 = "src/ingame/textbox/textbox.png";
@@ -154,14 +152,13 @@ public class Game extends Application {
 
         //sahne1 vbox
         sahne1.setAlignment(Pos.BOTTOM_LEFT);
-        sahne1.getChildren().addAll(ImageView1, ImageView2);
-        sahne1.setBackground(new Background(background3));
+        sahne1.getChildren().addAll(backImageView1, ImageView1, ImageView2);
         StackPane.setAlignment(ImageView1, Pos.BOTTOM_LEFT);
         StackPane.setAlignment(ImageView2, Pos.BOTTOM_CENTER);
 
         ImageView1.setFitWidth(525); // İstenilen genişlik değerini belirleyin
         ImageView1.setFitHeight(1000); // İstenilen yükseklik değerini belirleyin
-        StackPane.setMargin(ImageView1, new Insets(0, 0, 0, 110)); // İstenilen boşluk değerlerini belirleyin
+        StackPane.setMargin(ImageView1, new Insets(0, 0, 0, 0)); // İstenilen boşluk değerlerini belirleyin
         ImageView2.fitWidthProperty().bind(sahne1.widthProperty());
 
         //ChatBox İsim
@@ -180,9 +177,9 @@ public class Game extends Application {
 //Chatbox Kayan Yazı
         sahne1yazi.setFont(Font.font("Arial", FontWeight.BOLD, 30));
         sahne1.getChildren().add(sahne1yazi);
-        sahne1yazi.setTranslateY(-230);
-        sahne1yazi.setTranslateX(167);
-        sahne1yazi.setFill(Color.CORNFLOWERBLUE);
+        sahne1yazi.setTranslateY(-240);
+        sahne1yazi.setTranslateX(180);
+        sahne1yazi.setFill(Color.WHITESMOKE);
         sahne1yazi.setWrappingWidth(1400);
         sahne1yazi.setLineSpacing(10);
 
@@ -195,7 +192,7 @@ public class Game extends Application {
                                 int newLineIndex = currentText.indexOf("\n", currentIndex - 1);
                                 if (newLineIndex >= 0) {
                                     int numLines = currentText.substring(0, newLineIndex).split("\n").length;
-                                    sahne1yazi.setTranslateY(-230 + numLines * 45);
+                                    sahne1yazi.setTranslateY(-240 + numLines * 46);
                                 }
                                 sahne1yazi.setText(currentText);
                                 currentIndex++;
@@ -216,9 +213,26 @@ public class Game extends Application {
         sahne1.setOnMouseClicked(event -> {
             if (isFirstClick) { // İlk tıklama
                 if (!textFinished) {
-                    currentIndex = kayanyazi.length();
-                    sahne1yazi.setText(kayanyazi);
-                    textFinished = true;
+                    Timeline typingTimeline = new Timeline(
+                            new KeyFrame(Duration.millis(1), e -> {
+                                if (currentIndex <= kayanyazi.length()) {
+                                    String currentText = kayanyazi.substring(0, currentIndex);
+                                    int newLineIndex = currentText.indexOf("\n", currentIndex - 1);
+                                    if (newLineIndex >= 0) {
+                                        int numLines = currentText.substring(0, newLineIndex).split("\n").length;
+                                        sahne1yazi.setTranslateY(-230 + numLines * 45);
+                                    }
+                                    sahne1yazi.setText(currentText);
+                                    currentIndex++;
+                                    // Metin tamamlanınca textFinished'i güncelle
+                                    if (currentIndex == kayanyazi.length()) {
+                                        textFinished = true;
+                                    }
+                                }
+                            })
+                    );
+                    typingTimeline.setCycleCount(kayanyazi.length() + 1);
+                    typingTimeline.play();
                 }
                 isFirstClick = false;
             } else { // İkinci tıklama
@@ -229,6 +243,7 @@ public class Game extends Application {
                 currentIndex = 0;
             }
         });
+
 
 
         sahne1vbox.prefHeightProperty().bind(scene1.heightProperty());
