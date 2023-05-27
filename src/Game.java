@@ -173,19 +173,29 @@ public class Game extends Application {
         AllyName.setTranslateY(-350);
         sahne1.getChildren().add(AllyName);
 
-        String kayanyazi1 = "(Ally'nin iç sesi: 1.. 2.. 3.. 4.. 5.. 6..)";
-        String kayanyazi2 = "Koyunları saymakla geçen günlerime yeni bir tanesi daha eklendi..";
-        String kayanyazi3 = "Cidden, toplum farklı olanı dışladığını sanırken, ben onları dışlamıştım aslında. Ya durum tam tersiyse??";
-        String kayanyazi4 = "Geçenlerde kendi içimde bir toplantı düzenledim. Tek katılımcı bendim, katılımcı sayısı epey yüksekti..";
-        String kayanyazi5 = "Düşüncelerimi ve hislerimi konuştuk bol bol..";
-        String kayanyazi6 = "Birisi çıkıp 'hislerin umrumuzda değil' dedi, onu görememiştim, ama neden bu şekilde bağırdığını anlayabiliyordum..";
-        String kayanyazi7 = "Henüz ne ben onları, ne de onlar beni kabullenebilmişti..";
-        String kayanyazi8 = "Aykırı bir tarza mı sahiptim? Yoksa çok mu saçma cümleler kuruyordum? Ya da sakarlığım yüzünden miydi??";
-        String kayanyazi9 = "Ya da sevdiğim insanlara gerçekten değer verebildiğim için miydi? Bunların hepsi bir varsayım..";
-        String kayanyazi10 = "(Ally'nin telefonuna gizemli bir mesaj gelir))";
-        String kayanyazi11 = "(Ally telefonunu kontrol eder))";
-        String kayanyazi12 = "Merhaba, Ally. Uzun zaman oldu değil mi? Hala kafanın içinde dönüp duran tilkilerle savaşıyor musun:))";
-        String kayanyazi13 = "(Ally karşıdaki kişiye bir mesaj gönderir)";
+        String kayanyazi1 = "(Ally'nin iç sesi: 1.. 2.. 3.. 4.. 5.. 6..) ";
+        String kayanyazi2 = "Koyunları saymakla geçen günlerime yeni bir tanesi daha eklendi. ";
+        String kayanyazi3 = "Cidden, toplum farklı olanı dışladığını sanırken, ben onları dışlamıştım aslında. Ya durum tam tersiyse? ";
+        String kayanyazi4 = "Geçenlerde kendi içimde bir toplantı düzenledim. Tek katılımcı bendim, katılımcı sayısı epey yüksekti. ";
+        String kayanyazi5 = "Düşüncelerimi ve hislerimi konuştuk bol bol. ";
+        String kayanyazi6 = "Birisi çıkıp 'hislerin umrumuzda değil' dedi, onu görememiştim, ama neden bu şekilde bağırdığını anlayabiliyordum. ";
+        String kayanyazi7 = "Henüz ne ben onları, ne de onlar beni kabullenebilmişti. ";
+        String kayanyazi8 = "Aykırı bir tarza mı sahiptim? Yoksa çok mu saçma cümleler kuruyordum? Ya da sakarlığım yüzünden miydi? ";
+        String kayanyazi9 = "Ya da sevdiğim insanlara gerçekten değer verebildiğim için miydi? Bunların hepsi bir varsayım.. ";
+        String kayanyazi10 = "(Ally'nin telefonuna gizemli bir mesaj gelir) ";
+        String kayanyazi11 = "(Ally telefonunu kontrol eder) ";
+        String kayanyazi12 = "Merhaba, Ally. Uzun zaman oldu değil mi? Hala kafanın içinde dönüp duran tilkilerle savaşıyor musun:) ";
+        String kayanyazi13 = "(Ally karşıdaki kişiye bir mesaj gönderir) ";
+        String kayanyazi14 = "Kimsin? ";
+        String kayanyazi15 = "Ben senin içindeki karanlığım. ";
+        String kayanyazi16= "(Ally, şaşkınlıkla telefonunu elinde tutar, elleri titremeye başlar ve gözleri mesajdaki kelimelerde takılı kalır.) ";
+        String kayanyazi17= "(İçinden bir ürperti geçer, ancak merakı daha güçlüdür. Bir süre düşünür ve ardından mesaja cevap verir.) ";
+        String kayanyazi18= "İçimdeki karanlık mı? Ne demek istiyorsun? Kim olduğunu söyle! ";
+        String kayanyazi19= "(Ally mesajına cevap alamaz. Karşıdaki kişinin ne istediğini merak eder.) ";
+        String kayanyazi20= "(Kendisini kontrol etmeye çalışan Ally, cesaretini toplar ve tekrar mesaj atar.) ";
+        String kayanyazi21= "Söyle bakalım, içimdeki karanlık kim? Ne istiyorsun benden? ";
+        String kayanyazi22= "Cevaplarını bulmak için sana bir teklifim var. Hadi bir oyun oynayalım. ";
+
 
 
 
@@ -230,7 +240,77 @@ public class Game extends Application {
         }));
         animasyonListesi.add(new YazıAnimasyonu(kayanyazi12, sahne1yazi, -240, () -> {
         }));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi13, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi13, sahne1yazi, -240, () -> {
+            String backPath1 = "src/images/telmesaj2.png";
+            Image backImage1 = new Image(new File(backPath1).toURI().toString());
+            ImageView backImageView12 = new ImageView(backImage1);
+            backImageView12.fitWidthProperty().bind(scene1.widthProperty());
+            backImageView12.fitHeightProperty().bind(scene1.heightProperty());
+
+            sahne1.getChildren().remove(0);
+            sahne1.getChildren().add(0,backImageView12);
+            sahne1vbox.getChildren().remove(sahne1);
+            sahne1vbox.getChildren().add(sahne1);
+            AllyName.setText("Ally");
+        }));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi14, sahne1yazi, -240, () -> {
+            String backPath1 = "src/images/telmesaj3.png";
+            Image backImage1 = new Image(new File(backPath1).toURI().toString());
+            ImageView backImageView12 = new ImageView(backImage1);
+            backImageView12.fitWidthProperty().bind(scene1.widthProperty());
+            backImageView12.fitHeightProperty().bind(scene1.heightProperty());
+
+            sahne1.getChildren().remove(0);
+            sahne1.getChildren().add(0,backImageView12);
+            sahne1vbox.getChildren().remove(sahne1);
+            sahne1vbox.getChildren().add(sahne1);
+            AllyName.setText("Unknown");
+        }));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi15, sahne1yazi, -240, () -> {
+            AllyName.setText("Ally");
+        }));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi16, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi17, sahne1yazi, -240, () -> {
+            String backPath1 = "src/images/telmesaj4.png";
+            Image backImage1 = new Image(new File(backPath1).toURI().toString());
+            ImageView backImageView12 = new ImageView(backImage1);
+            backImageView12.fitWidthProperty().bind(scene1.widthProperty());
+            backImageView12.fitHeightProperty().bind(scene1.heightProperty());
+
+            sahne1.getChildren().remove(0);
+            sahne1.getChildren().add(0, backImageView12);
+            sahne1vbox.getChildren().remove(sahne1);
+            sahne1vbox.getChildren().add(sahne1);}
+        ));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi18, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi19, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi20, sahne1yazi, -240, () -> {
+            String backPath1 = "src/images/telmesaj5.png";
+            Image backImage1 = new Image(new File(backPath1).toURI().toString());
+            ImageView backImageView12 = new ImageView(backImage1);
+            backImageView12.fitWidthProperty().bind(scene1.widthProperty());
+            backImageView12.fitHeightProperty().bind(scene1.heightProperty());
+
+            sahne1.getChildren().remove(0);
+            sahne1.getChildren().add(0, backImageView12);
+            sahne1vbox.getChildren().remove(sahne1);
+            sahne1vbox.getChildren().add(sahne1);}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi21, sahne1yazi, -240, () -> {
+            String backPath1 = "src/images/telmesaj6.png";
+            Image backImage1 = new Image(new File(backPath1).toURI().toString());
+            ImageView backImageView12 = new ImageView(backImage1);
+            backImageView12.fitWidthProperty().bind(scene1.widthProperty());
+            backImageView12.fitHeightProperty().bind(scene1.heightProperty());
+
+            sahne1.getChildren().remove(0);
+            sahne1.getChildren().add(0, backImageView12);
+            sahne1vbox.getChildren().remove(sahne1);
+            sahne1vbox.getChildren().add(sahne1);
+            AllyName.setText("Unknown");}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi22, sahne1yazi, -240, () -> {}));
+
+
+
 
 
 
@@ -252,16 +332,9 @@ public class Game extends Application {
                 if (animasyonIndex < animasyonListesi.size()) {
                     animasyonListesi.get(animasyonIndex).baslat();
                 } else {
-                    // Tüm animasyonlar tamamlandı
                 }
             }
         });
-
-
-
-
-
-
 
         sahne1vbox.prefHeightProperty().bind(scene1.heightProperty());
         sahne1vbox.prefWidthProperty().bind(scene1.widthProperty());
