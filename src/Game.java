@@ -14,6 +14,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.scene.media.MediaPlayer;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -27,6 +28,8 @@ public class Game extends Application {
     private int currentIndex = 0; // Yazıda işlenen karakterin indeksi
     private boolean textFinished = false; // Yazı tamamlandığında true olacak durum değişkeni
     private boolean isFirstClick = true;
+    private MediaPlayer mediaPlayer2;
+
     VBox intro = new VBox();
     StackPane sahne1 = new StackPane();
     VBox sahne1vbox = new VBox();
@@ -196,6 +199,10 @@ public class Game extends Application {
         String kayanyazi21= "Söyle bakalım, içimdeki karanlık kim? Ne istiyorsun benden? ";
         String kayanyazi22= "Cevaplarını bulmak için sana bir teklifim var. Hadi bir oyun oynayalım. ";
 
+        String musicFile = "sounds/vibration.mp3";
+        //String musicFile = getClass().getResource("/sounds/menutheme.mp3").toExternalForm();
+        Media mediam = new Media(new File(musicFile).toURI().toString());
+        mediaPlayer2 = new MediaPlayer(mediam);
 
 
 
@@ -210,7 +217,9 @@ public class Game extends Application {
         animasyonListesi.add(new YazıAnimasyonu(kayanyazi6, sahne1yazi, -240, () -> {}));
         animasyonListesi.add(new YazıAnimasyonu(kayanyazi7, sahne1yazi, -240, () -> {}));
         animasyonListesi.add(new YazıAnimasyonu(kayanyazi8, sahne1yazi, -240, () -> {}));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi9, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi9, sahne1yazi, -240, () -> {
+            mediaPlayer2.play();
+        }));
         animasyonListesi.add(new YazıAnimasyonu(kayanyazi10, sahne1yazi, -240, () -> {
             String backPath1 = "src/images/telefon1.png";
             Image backImage1 = new Image(new File(backPath1).toURI().toString());
