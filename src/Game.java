@@ -182,6 +182,8 @@ public class Game extends Application {
         String kayanyazi7 = "Henüz ne ben onları, ne de onlar beni kabullenebilmişti..";
         String kayanyazi8 = "Aykırı bir tarza mı sahiptim? Yoksa çok mu saçma cümleler kuruyordum? Ya da sakarlığım yüzünden miydi??";
         String kayanyazi9 = "Ya da sevdiğim insanlara gerçekten değer verebildiğim için miydi? Bunların hepsi bir varsayım..";
+        String kayanyazi10 = "(Ally'nin telefonuna gizemli bir mesaj gelir)";
+
 
 
         List<YazıAnimasyonu> animasyonListesi = new ArrayList<>();
@@ -193,7 +195,21 @@ public class Game extends Application {
         animasyonListesi.add(new YazıAnimasyonu(kayanyazi6, sahne1yazi, -240, () -> {}));
         animasyonListesi.add(new YazıAnimasyonu(kayanyazi7, sahne1yazi, -240, () -> {}));
         animasyonListesi.add(new YazıAnimasyonu(kayanyazi8, sahne1yazi, -240, () -> {}));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi9, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi9, sahne1yazi, -240, () -> {
+            String backPath1 = "src/images/arka_plan_resmi.png";
+            Image backImage1 = new Image(new File(backPath1).toURI().toString());
+            ImageView backImageView12 = new ImageView(backImage1);
+            backImageView12.fitWidthProperty().bind(scene1.widthProperty());
+            backImageView12.fitHeightProperty().bind(scene1.heightProperty());
+
+            sahne1.getChildren().remove(0);
+            sahne1.getChildren().add(0,backImageView12);
+            sahne1vbox.getChildren().remove(sahne1);
+            sahne1vbox.getChildren().add(sahne1);
+
+        }));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi10, sahne1yazi, -240, () -> {}));
+
 
 
         sahne1.getChildren().add(sahne1yazi);
