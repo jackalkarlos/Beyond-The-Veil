@@ -173,27 +173,27 @@ public class Game extends Application {
         AllyName.setTranslateY(-350);
         sahne1.getChildren().add(AllyName);
 
-        String kayanyazi1 = "(Ally'nin iç sesi: 1.. 2.. 3.. 4.. 5.. 6..)";
-        String kayanyazi2 = "Koyunları saymakla geçen günlerime yeni bir tanesi daha eklendi.";
-        String kayanyazi3 = "Cidden, toplum farklı olanı dışladığını sanırken, ben onları dışlamıştım aslında. Ya durum tam tersiyse?";
-        String kayanyazi4 = "Geçenlerde kendi içimde bir toplantı düzenledim. Tek katılımcı bendim, katılımcı sayısı epey yüksekti.";
-        String kayanyazi5 = "Düşüncelerimi ve hislerimi konuştuk bol bol.";
-        String kayanyazi6 = "Birisi çıkıp 'hislerin umrumuzda değil' dedi, onu görememiştim, ama neden bu şekilde bağırdığını anlayabiliyordum.";
-        String kayanyazi7 = "Henüz ne ben onları, ne de onlar beni kabullenebilmişti.";
-        String kayanyazi8 = "Aykırı bir tarza mı sahiptim? Yoksa çok mu saçma cümleler kuruyordum? Ya da sakarlığım yüzünden miydi?";
-        String kayanyazi9 = "Ya da sevdiğim insanlara gerçekten değer verebildiğim için miydi? Bunların hepsi bir varsayım.";
+        String kayanyazi1 = "(Ally'nin iç sesi: 1.. 2.. 3.. 4.. 5.. 6..))";
+        String kayanyazi2 = "Koyunları saymakla geçen günlerime yeni bir tanesi daha eklendi..";
+        String kayanyazi3 = "Cidden, toplum farklı olanı dışladığını sanırken, ben onları dışlamıştım aslında. Ya durum tam tersiyse??";
+        String kayanyazi4 = "Geçenlerde kendi içimde bir toplantı düzenledim. Tek katılımcı bendim, katılımcı sayısı epey yüksekti..";
+        String kayanyazi5 = "Düşüncelerimi ve hislerimi konuştuk bol bol..";
+        String kayanyazi6 = "Birisi çıkıp 'hislerin umrumuzda değil' dedi, onu görememiştim, ama neden bu şekilde bağırdığını anlayabiliyordum..";
+        String kayanyazi7 = "Henüz ne ben onları, ne de onlar beni kabullenebilmişti..";
+        String kayanyazi8 = "Aykırı bir tarza mı sahiptim? Yoksa çok mu saçma cümleler kuruyordum? Ya da sakarlığım yüzünden miydi??";
+        String kayanyazi9 = "Ya da sevdiğim insanlara gerçekten değer verebildiğim için miydi? Bunların hepsi bir varsayım..";
 
 
         List<YazıAnimasyonu> animasyonListesi = new ArrayList<>();
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi1, sahne1yazi));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi2, sahne1yazi));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi3, sahne1yazi));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi4, sahne1yazi));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi5, sahne1yazi));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi6, sahne1yazi));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi7, sahne1yazi));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi8, sahne1yazi));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi9, sahne1yazi));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi1, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi2, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi3, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi4, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi5, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi6, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi7, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi8, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi9, sahne1yazi, -240, () -> {}));
 
 
         sahne1.getChildren().add(sahne1yazi);
@@ -216,6 +216,7 @@ public class Game extends Application {
                 }
             }
         });
+
 
 
 

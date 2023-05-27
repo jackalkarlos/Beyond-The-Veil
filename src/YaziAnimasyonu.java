@@ -1,5 +1,7 @@
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -13,8 +15,9 @@ class YazıAnimasyonu {
     private int currentIndex;
     private double yBaslangic;
     private Timeline typingTimeline;
+    private Runnable tamamlanmaOlayı;
 
-    public YazıAnimasyonu(String yazı, Text yazıNesnesi) {
+    public YazıAnimasyonu(String yazı, Text yazıNesnesi, double yBaslangic, Runnable tamamlanmaOlayı) {
         this.yazı = yazı;
         this.yazıNesnesi = yazıNesnesi;
         this.animasyonTamamlandı = false;
@@ -22,10 +25,11 @@ class YazıAnimasyonu {
         this.yazıNesnesi.setTranslateX(180);
         this.yazıNesnesi.setFont(Font.font("Arial", FontWeight.BOLD, 26));
         this.yazıNesnesi.setFill(Color.WHITESMOKE);
-        this.yazıNesnesi.setWrappingWidth(1550);
+        this.yazıNesnesi.setWrappingWidth(1500);
         this.yazıNesnesi.setLineSpacing(10);
-        this.yBaslangic = -240; // Başlangıç y konumu burada ayarlanacak
+        this.yBaslangic = yBaslangic;
         this.yazıNesnesi.setTranslateY(yBaslangic);
+        this.tamamlanmaOlayı = tamamlanmaOlayı;
     }
 
     public boolean isAnimasyonTamamlandı() {
@@ -49,6 +53,9 @@ class YazıAnimasyonu {
                         if (currentIndex == yazı.length()) {
                             animasyonTamamlandı = true;
                             typingTimeline.stop(); // Animasyon tamamlandığında durdur
+                            if (tamamlanmaOlayı != null) {
+                                tamamlanmaOlayı.run();
+                            }
                         }
                     }
                 })
@@ -61,5 +68,8 @@ class YazıAnimasyonu {
         yazıNesnesi.setText(yazı);
         animasyonTamamlandı = true;
         typingTimeline.stop(); // Animasyon tamamlandığında durdur
+        if (tamamlanmaOlayı != null) {
+            tamamlanmaOlayı.run();
+        }
     }
 }
