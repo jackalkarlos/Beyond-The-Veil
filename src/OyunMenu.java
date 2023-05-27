@@ -14,7 +14,6 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 
-
 public class OyunMenu extends Application {
     private MediaPlayer mediaPlayer;
 //s

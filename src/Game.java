@@ -123,7 +123,7 @@ public class Game extends Application {
 
         //Burası yine Scene1 içinde, Sadece  yni bir layout oluşturulup layout Değişikliği yapılıyor, bu şekilde gitmeliyiz
         //intro vbox
-        Media media = new Media(new File("src/videos/intro.mp4").toURI().toString());
+        Media media = new Media(new File("src/videos/test.mp4").toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         MediaView mediaView = new MediaView(mediaPlayer);
         mediaView.fitWidthProperty().bind(primaryStage.widthProperty());
@@ -202,16 +202,49 @@ public class Game extends Application {
         String kayanyazi20= "(Kendisini kontrol etmeye çalışan Ally, cesaretini toplar ve tekrar mesaj atar.) ";
         String kayanyazi21= "Söyle bakalım, içimdeki karanlık kim? Ne istiyorsun benden? ";
         String kayanyazi22= "Cevaplarını bulmak için sana bir teklifim var. Hadi bir oyun oynayalım. ";
+        String kayanyazi23= "(Gizemli kişi bir konum gönderir.) ";
+        String kayanyazi24= "(Ally düşüncelidir, fakat hayatında başka kayda değer bir şey olmadığı için gitmeye karar verir.) ";
+        String kayanyazi25= "(Belki de içimdeki karmaşık düşüncelere bir macera fırsatı olabilir.) ";
+        String kayanyazi26= "Kararını veren Ally, telefonunu sıkıca kavrar ve mesajdaki konumu takip etmeye başlar. ";
+        String kayanyazi27= "Korku ve merak karışımı bir heyecanla, kararan sokakları geçerek hedefine doğru ilerler. ";
+        String kayanyazi28= "Kısa bir süre sonra, Ally, gönderilen konumun belirtildiği bir binanın önünde durur. ";
+        String kayanyazi29= "Bina, eski ve harap bir görünüme sahiptir. Kapısı yarı açık durumdadır. ";
+        String kayanyazi30= "Titreyen elleriyle kapıyı iten Ally, yavaşça binanın içine girer. ";
+        String kayanyazi31= "Işıksız koridorlar boyunca ilerlerken ayak sesleri yankılanır. Zihni, içsel bir savaşın ortasında gibidir. ";
+        String kayanyazi32= "Birden, koridorun sonundaki bir kapının ışık sızdırdığını fark eder. ";
+        String kayanyazi33= "Adımlarını hızlandırır ve kapıya yaklaşır. Kapının ardında, bilinmeyenle yüzleşeceği gerçeğiyle bir kez daha yüzleşir. ";
+        String kayanyazi34= "Ally, son bir derin nefes alır ve kapıyı açar. Işık, içeriye dökülürken, karşısında bekleyen kişiyle göz göze gelir. ";
+        String kayanyazi35= "Görüyorsun dimi Ally, buraya kadar geldin. ";
+        String kayanyazi36= "Neden beni buraya çağırdın? ";
+        String kayanyazi37= "Ne yaptığının farkına varmanı istiyorum. ";
+        String kayanyazi38= "Ne demek istiyorsun? ";
+        String kayanyazi39= "Uzun zaman boyunca kendini toplumdan soyutladın. ";
+        String kayanyazi40= "Onlardan farklı olduğunu düşündün. ";
+        String kayanyazi41= "Ama içgüdün olan merağın yüzünden buraya kadar geldin. ";
+        String kayanyazi42= "Tüm davranışların tipik bir insanın davranışı ile aynıydı. ";
+        String kayanyazi43= "Kendi benliğini bulamadığın için aldığın ilk mesaja sarıldın. ";
+        String kayanyazi44= "Burada seni öldürecek birisi de olabilirdi, düşünmedin bile. ";
+        String kayanyazi45= "İnsanların bir saniye olmadan düşünmeden hareket etmesi gibiydi. ";
+        String kayanyazi46= "Aldığın bir mesajı kurtuluş sandın. ";
+        String kayanyazi47= "Peki ya sen, oyuncu? ";
+        String kayanyazi48= "Sırf merak ettiğin için hikayenin sonuna kadar geldin. ";
+        String kayanyazi49= "Lütfen farklı olduğunu düşünme, bu özel olmadığın anlamına gelmez. ";
+        String kayanyazi50= "Sadece, dünyada senin gibi düşünecek ve sana sarılacak insanlar olduğunun farkına var. ";
+        String kayanyazi51= "Ally, lütfen kendine iyi bak ve hayatına çekidüzen ver. ";
+        String kayanyazi52= "Eski bir dostun olarak seni düşünmek benim görevim. ";
+        String kayanyazi53= "Noah, ne diyeceğimi bilmiyorum. ";
+        String kayanyazi54= "Bir şey demene gerek yok, sadece kendine iyi bak. ";
+
+
+
 
         String musicFile = "sounds/vibration.mp3";
-        //String musicFile = getClass().getResource("/sounds/menutheme.mp3").toExternalForm();
         Media mediam = new Media(new File(musicFile).toURI().toString());
         mediaPlayer2 = new MediaPlayer(mediam);
 
         String themeFile = "sounds/gametheme.mp3";
         Media media3 = new Media(new File(themeFile).toURI().toString());
         mediaPlayer3 = new MediaPlayer(media3);
-
 
 
         List<YazıAnimasyonu> animasyonListesi = new ArrayList<>();
@@ -323,12 +356,125 @@ public class Game extends Application {
             sahne1vbox.getChildren().add(sahne1);
             AllyName.setText("Unknown");}));
         animasyonListesi.add(new YazıAnimasyonu(kayanyazi22, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi23, sahne1yazi, -240, () -> {
+            String backPath1 = "src/images/telmesaj7.png";
+            Image backImage1 = new Image(new File(backPath1).toURI().toString());
+            ImageView backImageView12 = new ImageView(backImage1);
+            backImageView12.fitWidthProperty().bind(scene1.widthProperty());
+            backImageView12.fitHeightProperty().bind(scene1.heightProperty());
+
+            sahne1.getChildren().remove(0);
+            sahne1.getChildren().add(0, backImageView12);
+            sahne1vbox.getChildren().remove(sahne1);
+            sahne1vbox.getChildren().add(sahne1);
+            AllyName.setText("Ally");
+            }));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi24, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi25, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi26, sahne1yazi, -240, () -> {
+            String backPath1 = "src/images/3.jpg";
+            Image backImage123 = new Image(new File(backPath1).toURI().toString());
+            ImageView backPhoto = new ImageView(backImage123);
+            backPhoto.fitWidthProperty().bind(scene1.widthProperty());
+            backPhoto.fitHeightProperty().bind(scene1.heightProperty());
+
+            String chrPath1 = "src/ingame/characters/sm1_sensei_normal.png";
+            Image ekImage0 = new Image(new File(chrPath1).toURI().toString());
+            ImageView ImageView13 = new ImageView(ekImage0);
+            ImageView13.setFitWidth(525); // İstenilen genişlik değerini belirleyin
+            ImageView13.setFitHeight(1000); // İstenilen yükseklik değerini belirleyin
 
 
+            sahne1.getChildren().remove(0);
+            sahne1.getChildren().add(0, backPhoto);
+            sahne1.getChildren().add(1, ImageView13);
+            sahne1vbox.getChildren().remove(sahne1);
+            sahne1vbox.getChildren().add(sahne1);
+        }));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi27, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi28, sahne1yazi, -240, () -> {
+            String backPath1 = "src/images/4.jpg";
+            Image backImage1 = new Image(new File(backPath1).toURI().toString());
+            ImageView backImageView12 = new ImageView(backImage1);
+            backImageView12.fitWidthProperty().bind(scene1.widthProperty());
+            backImageView12.fitHeightProperty().bind(scene1.heightProperty());
+
+            sahne1.getChildren().remove(0);
+            sahne1.getChildren().add(0,backImageView12);
+            sahne1vbox.getChildren().remove(sahne1);
+            sahne1vbox.getChildren().add(sahne1);
+        }));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi29, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi30, sahne1yazi, -240, () -> {
+            String backPath1 = "src/images/5.jpg";
+            Image backImage1 = new Image(new File(backPath1).toURI().toString());
+            ImageView backImageView12 = new ImageView(backImage1);
+            backImageView12.fitWidthProperty().bind(scene1.widthProperty());
+            backImageView12.fitHeightProperty().bind(scene1.heightProperty());
+
+            sahne1.getChildren().remove(0);
+            sahne1.getChildren().add(0,backImageView12);
+            sahne1vbox.getChildren().remove(sahne1);
+            sahne1vbox.getChildren().add(sahne1);
+        }));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi31, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi32, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi33, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi34, sahne1yazi, -240, () -> {
+            String backPath1 = "src/images/5.jpg";
+            Image backImage123 = new Image(new File(backPath1).toURI().toString());
+            ImageView backPhoto = new ImageView(backImage123);
+            backPhoto.fitWidthProperty().bind(scene1.widthProperty());
+            backPhoto.fitHeightProperty().bind(scene1.heightProperty());
+
+            String chrPath2 = "src/ingame/characters/ssn_sports_angry.png";
+            Image ekImagem1 = new Image(new File(chrPath2).toURI().toString());
+            ImageView ImageView14 = new ImageView(ekImagem1);
+            ImageView14.setFitWidth(480); // İstenilen genişlik değerini belirleyin
+            ImageView14.setFitHeight(1000); // İstenilen yükseklik değerini belirleyin
+            StackPane.setAlignment(ImageView14, Pos.BOTTOM_RIGHT);
 
 
+            sahne1.getChildren().remove(0);
+            sahne1.getChildren().add(0, backPhoto);
+            sahne1.getChildren().add(1, ImageView14);
+            AllyName.setText("Noah");
+            sahne1vbox.getChildren().remove(sahne1);
+            sahne1vbox.getChildren().add(sahne1);
+        }));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi35, sahne1yazi, -240, () -> {
+            AllyName.setText("Ally");
+        }));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi36, sahne1yazi, -240, () -> {
+            AllyName.setText("Noah");
+        }));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi37, sahne1yazi, -240, () -> {
+            AllyName.setText("Ally");
+        }));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi38, sahne1yazi, -240, () -> {
+            AllyName.setText("Noah");
 
-
+        }));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi39, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi40, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi41, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi42, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi43, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi44, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi45, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi46, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi47, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi48, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi49, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi50, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi51, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi52, sahne1yazi, -240, () -> {
+            AllyName.setText("Ally");
+        }));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi53, sahne1yazi, -240, () -> {
+            AllyName.setText("Noah");
+        }));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi54, sahne1yazi, -240, () -> {}));
 
 
         sahne1.getChildren().add(sahne1yazi);
