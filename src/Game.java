@@ -14,7 +14,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.scene.media.MediaPlayer;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -124,7 +123,7 @@ public class Game extends Application {
 
         //Burası yine Scene1 içinde, Sadece  yni bir layout oluşturulup layout Değişikliği yapılıyor, bu şekilde gitmeliyiz
         //intro vbox
-        Media media = new Media(new File("src/videos/test.mp4").toURI().toString());
+        Media media = new Media(new File("src/videos/intro.mp4").toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
         MediaView mediaView = new MediaView(mediaPlayer);
         mediaView.fitWidthProperty().bind(primaryStage.widthProperty());

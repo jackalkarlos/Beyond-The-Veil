@@ -1,24 +1,28 @@
-import java.io.*;
-import java.util.*;
+import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
-import javafx.scene.control.Slider;
-import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
-import javafx.scene.text.*;
-import javafx.scene.control.ComboBox;
-import javafx.collections.FXCollections;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Button;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.Properties;
 
 public class SettingsManager extends Application{
     public static void main(String[] args) {
@@ -217,17 +221,17 @@ public class SettingsManager extends Application{
         Button kaydet = new Button("Kaydet");
         kaydet.setFont(Font.font("Arial", FontWeight.BOLD, 15));
         kaydet.setOnAction(event -> {
-            double sliderDeger = slider.getValue(); //  Audio
+            double sliderDeger = slider.getValue(); // Ses
             int sliderDeger2 = (int) sliderDeger;
             String sesDegeri = Integer.toString(sliderDeger2);
 
-            double slider2Deger = slider2.getValue(); //  Opacity
+            double slider2Deger = slider2.getValue(); // Opaklık
             int slider2Deger2 = (int) slider2Deger;
             String opacityDegeri = Integer.toString(slider2Deger2);
 
-            String levelValue = returnlevelValue(); // Level - Burayi Kullanici Degistiremez
+            String levelValue = returnlevelValue(); // Seviye - Kullanıcı tarafından değiştirilemez
 
-            boolean isSelected = cb1.isSelected(); // full screen
+            boolean isSelected = cb1.isSelected(); // Tam ekran
             String fullScreenValue;
             if (isSelected) {
                 fullScreenValue = "True";
@@ -261,10 +265,10 @@ public class SettingsManager extends Application{
         });
 
 
-        Image anime = new Image("images/setimage.png");
+        Image anime = new Image("images/Logosiyah.png");
         ImageView animeView = new ImageView(anime);
-        animeView.setFitHeight(215);
-        animeView.setFitWidth(245);
+        animeView.setFitHeight(150);
+        animeView.setFitWidth(200);
 
 
         stackPane.getChildren().addAll(backgroundImageView, vbox1, cb1,animeView,kaydet,menuyedon);
