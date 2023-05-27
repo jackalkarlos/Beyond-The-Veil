@@ -16,9 +16,14 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Game extends Application {
 
-    public static final int yazidelay = 60; // Yazma gecikmesi (milisaniye cinsinden)
+    public static final int yazidelay = 20; // Yazma gecikmesi (milisaniye cinsinden)
+    public static int animasyonIndex = 0;
+
     private int currentIndex = 0; // Yazıda işlenen karakterin indeksi
     private boolean textFinished = false; // Yazı tamamlandığında true olacak durum değişkeni
     private boolean isFirstClick = true;
@@ -168,40 +173,50 @@ public class Game extends Application {
         AllyName.setTranslateY(-350);
         sahne1.getChildren().add(AllyName);
 
-        String kayanyazi1 = "(Ally'nin iç sesi: 1.. 2.. 3.. 4.. 5.. 6..)\nÇekiyom La Havle\nEdiyom Test Be";
-        String kayanyazi2 = "İkinci yazı";
+        String kayanyazi1 = "(Ally'nin iç sesi: 1.. 2.. 3.. 4.. 5.. 6..)";
+        String kayanyazi2 = "Koyunları saymakla geçen günlerime yeni bir tanesi daha eklendi.";
+        String kayanyazi3 = "Cidden, toplum farklı olanı dışladığını sanırken, ben onları dışlamıştım aslında. Ya durum tam tersiyse?";
+        String kayanyazi4 = "Geçenlerde kendi içimde bir toplantı düzenledim. Tek katılımcı bendim, katılımcı sayısı epey yüksekti.";
+        String kayanyazi5 = "Düşüncelerimi ve hislerimi konuştuk bol bol.";
+        String kayanyazi6 = "Birisi çıkıp 'hislerin umrumuzda değil' dedi, onu görememiştim, ama neden bu şekilde bağırdığını anlayabiliyordum.";
+        String kayanyazi7 = "Henüz ne ben onları, ne de onlar beni kabullenebilmişti.";
+        String kayanyazi8 = "Aykırı bir tarza mı sahiptim? Yoksa çok mu saçma cümleler kuruyordum? Ya da sakarlığım yüzünden miydi?";
+        String kayanyazi9 = "Ya da sevdiğim insanlara gerçekten değer verebildiğim için miydi? Bunların hepsi bir varsayım.";
 
-        Text sahne1yazi = new Text();
-        sahne1yazi.setFont(Font.font("Arial", FontWeight.BOLD, 30));
-        sahne1yazi.setFill(Color.WHITESMOKE);
-        sahne1yazi.setWrappingWidth(1400);
-        sahne1yazi.setLineSpacing(10);
 
-        YazıAnimasyonu animasyon1 = new YazıAnimasyonu(kayanyazi1, sahne1yazi);
-        YazıAnimasyonu animasyon2 = new YazıAnimasyonu(kayanyazi2, sahne1yazi);
+        List<YazıAnimasyonu> animasyonListesi = new ArrayList<>();
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi1, sahne1yazi));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi2, sahne1yazi));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi3, sahne1yazi));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi4, sahne1yazi));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi5, sahne1yazi));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi6, sahne1yazi));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi7, sahne1yazi));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi8, sahne1yazi));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi9, sahne1yazi));
+
 
         sahne1.getChildren().add(sahne1yazi);
-        sahne1yazi.setTranslateY(-240);
-        sahne1yazi.setTranslateX(180);
 
         sahne1.setOnMouseEntered(event -> {
-            if (!animasyon1.isAnimasyonTamamlandı()) {
-                animasyon1.baslat();
+            if (!animasyonListesi.get(animasyonIndex).isAnimasyonTamamlandı()) {
+                animasyonListesi.get(animasyonIndex).baslat();
             }
         });
 
         sahne1.setOnMouseClicked(event -> {
-            if (isFirstClick) { // İlk tıklama
-                if (!animasyon1.isAnimasyonTamamlandı()) {
-                    animasyon1.tamamla();
-                }
-                isFirstClick = false;
-            } else { // İkinci tıklama
-                if (!animasyon2.isAnimasyonTamamlandı()) {
-                    animasyon2.baslat();
+            if (!animasyonListesi.get(animasyonIndex).isAnimasyonTamamlandı()) {
+                animasyonListesi.get(animasyonIndex).tamamla();
+            } else {
+                animasyonIndex++;
+                if (animasyonIndex < animasyonListesi.size()) {
+                    animasyonListesi.get(animasyonIndex).baslat();
+                } else {
+                    // Tüm animasyonlar tamamlandı
                 }
             }
         });
+
 
 
 
