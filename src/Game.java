@@ -21,7 +21,7 @@ import java.util.List;
 
 public class Game extends Application {
 
-    public static final int yazidelay = 20; // Yazma gecikmesi (milisaniye cinsinden)
+    public static final int yazidelay = 30; // Yazma gecikmesi (milisaniye cinsinden)
     public static int animasyonIndex = 0;
 
     private int currentIndex = 0; // Yazıda işlenen karakterin indeksi
@@ -173,7 +173,7 @@ public class Game extends Application {
         AllyName.setTranslateY(-350);
         sahne1.getChildren().add(AllyName);
 
-        String kayanyazi1 = "(Ally'nin iç sesi: 1.. 2.. 3.. 4.. 5.. 6..))";
+        String kayanyazi1 = "(Ally'nin iç sesi: 1.. 2.. 3.. 4.. 5.. 6..)";
         String kayanyazi2 = "Koyunları saymakla geçen günlerime yeni bir tanesi daha eklendi..";
         String kayanyazi3 = "Cidden, toplum farklı olanı dışladığını sanırken, ben onları dışlamıştım aslında. Ya durum tam tersiyse??";
         String kayanyazi4 = "Geçenlerde kendi içimde bir toplantı düzenledim. Tek katılımcı bendim, katılımcı sayısı epey yüksekti..";
@@ -182,7 +182,12 @@ public class Game extends Application {
         String kayanyazi7 = "Henüz ne ben onları, ne de onlar beni kabullenebilmişti..";
         String kayanyazi8 = "Aykırı bir tarza mı sahiptim? Yoksa çok mu saçma cümleler kuruyordum? Ya da sakarlığım yüzünden miydi??";
         String kayanyazi9 = "Ya da sevdiğim insanlara gerçekten değer verebildiğim için miydi? Bunların hepsi bir varsayım..";
-        String kayanyazi10 = "(Ally'nin telefonuna gizemli bir mesaj gelir)";
+        String kayanyazi10 = "(Ally'nin telefonuna gizemli bir mesaj gelir))";
+        String kayanyazi11 = "(Ally telefonunu kontrol eder))";
+        String kayanyazi12 = "Merhaba, Ally. Uzun zaman oldu değil mi? Hala kafanın içinde dönüp duran tilkilerle savaşıyor musun:))";
+        String kayanyazi13 = "(Ally karşıdaki kişiye bir mesaj gönderir)";
+
+
 
 
 
@@ -195,8 +200,9 @@ public class Game extends Application {
         animasyonListesi.add(new YazıAnimasyonu(kayanyazi6, sahne1yazi, -240, () -> {}));
         animasyonListesi.add(new YazıAnimasyonu(kayanyazi7, sahne1yazi, -240, () -> {}));
         animasyonListesi.add(new YazıAnimasyonu(kayanyazi8, sahne1yazi, -240, () -> {}));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi9, sahne1yazi, -240, () -> {
-            String backPath1 = "src/images/arka_plan_resmi.png";
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi9, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi10, sahne1yazi, -240, () -> {
+            String backPath1 = "src/images/telefon1.png";
             Image backImage1 = new Image(new File(backPath1).toURI().toString());
             ImageView backImageView12 = new ImageView(backImage1);
             backImageView12.fitWidthProperty().bind(scene1.widthProperty());
@@ -208,7 +214,25 @@ public class Game extends Application {
             sahne1vbox.getChildren().add(sahne1);
 
         }));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi10, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi11, sahne1yazi, -240, () -> {
+            String backPath1 = "src/images/telmesaj1.png";
+            Image backImage1 = new Image(new File(backPath1).toURI().toString());
+            ImageView backImageView12 = new ImageView(backImage1);
+            backImageView12.fitWidthProperty().bind(scene1.widthProperty());
+            backImageView12.fitHeightProperty().bind(scene1.heightProperty());
+
+            sahne1.getChildren().remove(0);
+            sahne1.getChildren().add(0,backImageView12);
+            sahne1.getChildren().remove(1);
+            sahne1vbox.getChildren().remove(sahne1);
+            sahne1vbox.getChildren().add(sahne1);
+            AllyName.setText("Unknown");
+        }));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi12, sahne1yazi, -240, () -> {
+        }));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi13, sahne1yazi, -240, () -> {}));
+
+
 
 
 
