@@ -29,6 +29,8 @@ public class Game extends Application {
     private boolean textFinished = false; // Yazı tamamlandığında true olacak durum değişkeni
     private boolean isFirstClick = true;
     private MediaPlayer mediaPlayer2;
+    private MediaPlayer mediaPlayer3;
+
 
     VBox intro = new VBox();
     StackPane sahne1 = new StackPane();
@@ -136,6 +138,9 @@ public class Game extends Application {
         });
         mediaPlayer.setOnEndOfMedia(() -> {
             window.getScene().setRoot(sahne1vbox); //scene1'i alıp rootunu intro olarak ayarlıyor
+            mediaPlayer3.play();
+            mediaPlayer3.setCycleCount(MediaPlayer.INDEFINITE);
+            mediaPlayer3.setVolume(intAudio);
         });
 
         //sahne1 vbox'u için karakter fotosu
@@ -204,7 +209,9 @@ public class Game extends Application {
         Media mediam = new Media(new File(musicFile).toURI().toString());
         mediaPlayer2 = new MediaPlayer(mediam);
 
-
+        String themeFile = "sounds/gametheme.mp3";
+        Media media3 = new Media(new File(themeFile).toURI().toString());
+        mediaPlayer3 = new MediaPlayer(media3);
 
 
 
