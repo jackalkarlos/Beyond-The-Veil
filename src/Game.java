@@ -1,6 +1,8 @@
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -29,6 +31,7 @@ public class Game extends Application {
     private boolean isFirstClick = true;
     private MediaPlayer mediaPlayer2;
     private MediaPlayer mediaPlayer3;
+    private MediaPlayer outro;
 
 
     VBox intro = new VBox();
@@ -52,6 +55,8 @@ public class Game extends Application {
     private static final String FILE_PATH = "settings.conf"; // -> settings.conf production asamasinda out/production/ClickGame icerisinde, oyunun ismi degisicek :D
     @Override
     public void start(Stage primaryStage) {
+        System.setProperty("prism.allowhidpi", "true");
+        System.setProperty("prism.lcdtext", "true");
         //ayarlarin okunmasi
         SettingsManager settingsMng = new SettingsManager();
         int intAudio = settingsMng.returnAudioValue();
@@ -474,7 +479,28 @@ public class Game extends Application {
         animasyonListesi.add(new YazıAnimasyonu(kayanyazi53, sahne1yazi, -240, () -> {
             AllyName.setText("Noah");
         }));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi54, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi54, sahne1yazi, -240, () -> {
+            mediaPlayer3.stop();
+
+
+            Media outro1 = new Media(new File("src/videos/outro.mp4").toURI().toString());
+            MediaPlayer outro = new MediaPlayer(outro1);
+            MediaView mediaView100 = new MediaView(outro);
+            mediaView100.fitWidthProperty().bind(primaryStage.widthProperty());
+            mediaView100.fitHeightProperty().bind(primaryStage.heightProperty());
+
+            Scene scene10 = new Scene(new Group(mediaView100));
+            primaryStage.setScene(scene10);
+            primaryStage.setFullScreen(isFullScreen);
+            outro.play();
+
+            Stage currentStage = (Stage) primaryStage.getScene().getWindow();
+
+            outro.setOnEndOfMedia(() -> {
+                currentStage.close();
+            });
+
+        }));
 
 
         sahne1.getChildren().add(sahne1yazi);
