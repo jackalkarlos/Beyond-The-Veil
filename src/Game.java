@@ -253,17 +253,17 @@ public class Game extends Application {
 
 
         List<YazıAnimasyonu> animasyonListesi = new ArrayList<>();
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi1, sahne1yazi, -240, () -> {}));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi2, sahne1yazi, -240, () -> {}));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi3, sahne1yazi, -240, () -> {}));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi4, sahne1yazi, -240, () -> {}));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi5, sahne1yazi, -240, () -> {}));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi6, sahne1yazi, -240, () -> {}));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi7, sahne1yazi, -240, () -> {}));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi8, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi1, sahne1yazi, -240, () -> {},() -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi2, sahne1yazi, -240, () -> {},() -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi3, sahne1yazi, -240, () -> {},() -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi4, sahne1yazi, -240, () -> {},() -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi5, sahne1yazi, -240, () -> {},() -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi6, sahne1yazi, -240, () -> {},() -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi7, sahne1yazi, -240, () -> {},() -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi8, sahne1yazi, -240, () -> {},() -> {}));
         animasyonListesi.add(new YazıAnimasyonu(kayanyazi9, sahne1yazi, -240, () -> {
             mediaPlayer2.play();
-        }));
+        },() -> {}));
         animasyonListesi.add(new YazıAnimasyonu(kayanyazi10, sahne1yazi, -240, () -> {
             String backPath1 = "src/images/telefon1.png";
             Image backImage1 = new Image(new File(backPath1).toURI().toString());
@@ -275,8 +275,7 @@ public class Game extends Application {
             sahne1.getChildren().add(0,backImageView12);
             sahne1vbox.getChildren().remove(sahne1);
             sahne1vbox.getChildren().add(sahne1);
-
-        }));
+        },() -> {}));
         animasyonListesi.add(new YazıAnimasyonu(kayanyazi11, sahne1yazi, -240, () -> {
             String backPath1 = "src/images/telmesaj1.png";
             Image backImage1 = new Image(new File(backPath1).toURI().toString());
@@ -289,9 +288,11 @@ public class Game extends Application {
             sahne1.getChildren().remove(1);
             sahne1vbox.getChildren().remove(sahne1);
             sahne1vbox.getChildren().add(sahne1);
-            AllyName.setText("Unknown");
+        },() -> {
         }));
         animasyonListesi.add(new YazıAnimasyonu(kayanyazi12, sahne1yazi, -240, () -> {
+        },() -> {
+            AllyName.setText("Unknown");
         }));
         animasyonListesi.add(new YazıAnimasyonu(kayanyazi13, sahne1yazi, -240, () -> {
             String backPath1 = "src/images/telmesaj2.png";
@@ -304,6 +305,7 @@ public class Game extends Application {
             sahne1.getChildren().add(0,backImageView12);
             sahne1vbox.getChildren().remove(sahne1);
             sahne1vbox.getChildren().add(sahne1);
+        },() -> {
             AllyName.setText("Ally");
         }));
         animasyonListesi.add(new YazıAnimasyonu(kayanyazi14, sahne1yazi, -240, () -> {
@@ -317,12 +319,16 @@ public class Game extends Application {
             sahne1.getChildren().add(0,backImageView12);
             sahne1vbox.getChildren().remove(sahne1);
             sahne1vbox.getChildren().add(sahne1);
-            AllyName.setText("Unknown");
-        }));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi15, sahne1yazi, -240, () -> {
+        },() -> {
             AllyName.setText("Ally");
         }));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi16, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi15, sahne1yazi, -240, () -> {
+        },() -> {
+            AllyName.setText("Unknown");
+        }));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi16, sahne1yazi, -240, () -> {},() -> {
+            AllyName.setText("Ally");
+        }));
         animasyonListesi.add(new YazıAnimasyonu(kayanyazi17, sahne1yazi, -240, () -> {
             String backPath1 = "src/images/telmesaj4.png";
             Image backImage1 = new Image(new File(backPath1).toURI().toString());
@@ -333,10 +339,13 @@ public class Game extends Application {
             sahne1.getChildren().remove(0);
             sahne1.getChildren().add(0, backImageView12);
             sahne1vbox.getChildren().remove(sahne1);
-            sahne1vbox.getChildren().add(sahne1);}
+            sahne1vbox.getChildren().add(sahne1);},
+                () -> {}
         ));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi18, sahne1yazi, -240, () -> {}));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi19, sahne1yazi, -240, () -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi18, sahne1yazi, -240, () -> {},() -> {
+            AllyName.setText("Ally");
+        }));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi19, sahne1yazi, -240, () -> {},() -> {}));
         animasyonListesi.add(new YazıAnimasyonu(kayanyazi20, sahne1yazi, -240, () -> {
             String backPath1 = "src/images/telmesaj5.png";
             Image backImage1 = new Image(new File(backPath1).toURI().toString());
@@ -347,7 +356,7 @@ public class Game extends Application {
             sahne1.getChildren().remove(0);
             sahne1.getChildren().add(0, backImageView12);
             sahne1vbox.getChildren().remove(sahne1);
-            sahne1vbox.getChildren().add(sahne1);}));
+            sahne1vbox.getChildren().add(sahne1);},() -> {}));
         animasyonListesi.add(new YazıAnimasyonu(kayanyazi21, sahne1yazi, -240, () -> {
             String backPath1 = "src/images/telmesaj6.png";
             Image backImage1 = new Image(new File(backPath1).toURI().toString());
@@ -359,8 +368,10 @@ public class Game extends Application {
             sahne1.getChildren().add(0, backImageView12);
             sahne1vbox.getChildren().remove(sahne1);
             sahne1vbox.getChildren().add(sahne1);
-            AllyName.setText("Unknown");}));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi22, sahne1yazi, -240, () -> {}));
+            },() -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi22, sahne1yazi, -240, () -> {},() -> {
+            AllyName.setText("Unknown");
+        }));
         animasyonListesi.add(new YazıAnimasyonu(kayanyazi23, sahne1yazi, -240, () -> {
             String backPath1 = "src/images/telmesaj7.png";
             Image backImage1 = new Image(new File(backPath1).toURI().toString());
@@ -372,10 +383,11 @@ public class Game extends Application {
             sahne1.getChildren().add(0, backImageView12);
             sahne1vbox.getChildren().remove(sahne1);
             sahne1vbox.getChildren().add(sahne1);
+            },() -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi24, sahne1yazi, -240, () -> {},() -> {
             AllyName.setText("Ally");
-            }));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi24, sahne1yazi, -240, () -> {}));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi25, sahne1yazi, -240, () -> {}));
+        }));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi25, sahne1yazi, -240, () -> {},() -> {}));
         animasyonListesi.add(new YazıAnimasyonu(kayanyazi26, sahne1yazi, -240, () -> {
             String backPath1 = "src/images/3.jpg";
             Image backImage123 = new Image(new File(backPath1).toURI().toString());
@@ -395,8 +407,8 @@ public class Game extends Application {
             sahne1.getChildren().add(1, ImageView13);
             sahne1vbox.getChildren().remove(sahne1);
             sahne1vbox.getChildren().add(sahne1);
-        }));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi27, sahne1yazi, -240, () -> {}));
+        },() -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi27, sahne1yazi, -240, () -> {},() -> {}));
         animasyonListesi.add(new YazıAnimasyonu(kayanyazi28, sahne1yazi, -240, () -> {
             String backPath1 = "src/images/4.jpg";
             Image backImage1 = new Image(new File(backPath1).toURI().toString());
@@ -408,8 +420,8 @@ public class Game extends Application {
             sahne1.getChildren().add(0,backImageView12);
             sahne1vbox.getChildren().remove(sahne1);
             sahne1vbox.getChildren().add(sahne1);
-        }));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi29, sahne1yazi, -240, () -> {}));
+        },() -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi29, sahne1yazi, -240, () -> {},() -> {}));
         animasyonListesi.add(new YazıAnimasyonu(kayanyazi30, sahne1yazi, -240, () -> {
             String backPath1 = "src/images/5.jpg";
             Image backImage1 = new Image(new File(backPath1).toURI().toString());
@@ -421,10 +433,10 @@ public class Game extends Application {
             sahne1.getChildren().add(0,backImageView12);
             sahne1vbox.getChildren().remove(sahne1);
             sahne1vbox.getChildren().add(sahne1);
-        }));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi31, sahne1yazi, -240, () -> {}));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi32, sahne1yazi, -240, () -> {}));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi33, sahne1yazi, -240, () -> {}));
+        },() -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi31, sahne1yazi, -240, () -> {},() -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi32, sahne1yazi, -240, () -> {},() -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi33, sahne1yazi, -240, () -> {},() -> {}));
         animasyonListesi.add(new YazıAnimasyonu(kayanyazi34, sahne1yazi, -240, () -> {
             String backPath1 = "src/images/5.jpg";
             Image backImage123 = new Image(new File(backPath1).toURI().toString());
@@ -443,41 +455,45 @@ public class Game extends Application {
             sahne1.getChildren().remove(0);
             sahne1.getChildren().add(0, backPhoto);
             sahne1.getChildren().add(1, ImageView14);
-            AllyName.setText("Noah");
             sahne1vbox.getChildren().remove(sahne1);
             sahne1vbox.getChildren().add(sahne1);
-        }));
+        },() -> {}));
         animasyonListesi.add(new YazıAnimasyonu(kayanyazi35, sahne1yazi, -240, () -> {
-            AllyName.setText("Ally");
+        },() -> {
+            AllyName.setText("Noah");
         }));
         animasyonListesi.add(new YazıAnimasyonu(kayanyazi36, sahne1yazi, -240, () -> {
-            AllyName.setText("Noah");
+        },() -> {
+            AllyName.setText("Ally");
         }));
         animasyonListesi.add(new YazıAnimasyonu(kayanyazi37, sahne1yazi, -240, () -> {
-            AllyName.setText("Ally");
+        },() -> {
+            AllyName.setText("Noah");
         }));
         animasyonListesi.add(new YazıAnimasyonu(kayanyazi38, sahne1yazi, -240, () -> {
-            AllyName.setText("Noah");
-
-        }));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi39, sahne1yazi, -240, () -> {}));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi40, sahne1yazi, -240, () -> {}));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi41, sahne1yazi, -240, () -> {}));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi42, sahne1yazi, -240, () -> {}));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi43, sahne1yazi, -240, () -> {}));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi44, sahne1yazi, -240, () -> {}));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi45, sahne1yazi, -240, () -> {}));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi46, sahne1yazi, -240, () -> {}));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi47, sahne1yazi, -240, () -> {}));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi48, sahne1yazi, -240, () -> {}));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi49, sahne1yazi, -240, () -> {}));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi50, sahne1yazi, -240, () -> {}));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi51, sahne1yazi, -240, () -> {}));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi52, sahne1yazi, -240, () -> {
+        },() -> {
             AllyName.setText("Ally");
         }));
-        animasyonListesi.add(new YazıAnimasyonu(kayanyazi53, sahne1yazi, -240, () -> {
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi39, sahne1yazi, -240, () -> {},() -> {
             AllyName.setText("Noah");
+        }));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi40, sahne1yazi, -240, () -> {},() -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi41, sahne1yazi, -240, () -> {},() -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi42, sahne1yazi, -240, () -> {},() -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi43, sahne1yazi, -240, () -> {},() -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi44, sahne1yazi, -240, () -> {},() -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi45, sahne1yazi, -240, () -> {},() -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi46, sahne1yazi, -240, () -> {},() -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi47, sahne1yazi, -240, () -> {},() -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi48, sahne1yazi, -240, () -> {},() -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi49, sahne1yazi, -240, () -> {},() -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi50, sahne1yazi, -240, () -> {},() -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi51, sahne1yazi, -240, () -> {},() -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi52, sahne1yazi, -240, () -> {
+        },() -> {}));
+        animasyonListesi.add(new YazıAnimasyonu(kayanyazi53, sahne1yazi, -240, () -> {
+        },() -> {
+            AllyName.setText("Ally");
         }));
         animasyonListesi.add(new YazıAnimasyonu(kayanyazi54, sahne1yazi, -240, () -> {
             mediaPlayer3.stop();
@@ -500,6 +516,8 @@ public class Game extends Application {
                 currentStage.close();
             });
 
+        },() -> {
+            AllyName.setText("Noah");
         }));
 
 

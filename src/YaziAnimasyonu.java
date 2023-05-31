@@ -1,7 +1,5 @@
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.scene.image.Image;
-import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -16,8 +14,9 @@ class YazıAnimasyonu {
     private double yBaslangic;
     private Timeline typingTimeline;
     private Runnable tamamlanmaOlayı;
+    private Runnable baslangicOlayi;
 
-    public YazıAnimasyonu(String yazı, Text yazıNesnesi, double yBaslangic, Runnable tamamlanmaOlayı) {
+    public YazıAnimasyonu(String yazı, Text yazıNesnesi, double yBaslangic, Runnable tamamlanmaOlayı, Runnable baslangicOlayi) {
         this.yazı = yazı;
         this.yazıNesnesi = yazıNesnesi;
         this.animasyonTamamlandı = false;
@@ -30,6 +29,7 @@ class YazıAnimasyonu {
         this.yBaslangic = yBaslangic;
         this.yazıNesnesi.setTranslateY(yBaslangic);
         this.tamamlanmaOlayı = tamamlanmaOlayı;
+        this.baslangicOlayi = baslangicOlayi;
     }
 
     public boolean isAnimasyonTamamlandı() {
@@ -37,6 +37,9 @@ class YazıAnimasyonu {
     }
 
     public void baslat() {
+        if (baslangicOlayi != null) {
+            baslangicOlayi.run();
+        }
         typingTimeline = new Timeline(
                 new KeyFrame(Duration.millis(Game.yazidelay), e -> {
                     if (currentIndex <= yazı.length()) {
